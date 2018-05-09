@@ -43,7 +43,7 @@ export class GoogleLoginComponent {
     try {
 
       const gplusUser = await this.gplus.login({
-        'webClientId': 'AIzaSyCxIg5B8z2F531HyxDiKSprhF-P4ueDi7Y',//remeber to export this constant later as env variable
+        'webClientId': 'removed for safety :p',//remeber to export this constant later as env variable
         'offline': true,
         'scopes': 'profile email'
       })
