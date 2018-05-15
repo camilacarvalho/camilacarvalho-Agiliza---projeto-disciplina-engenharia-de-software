@@ -6,7 +6,7 @@ Para contribuir, recomenda-se a criação de um galho (Branch) para cada funcion
 ```
 US_04/Implementa_Pagina_Login
 ```
-Também é recomendado utilizar títulos significativos para os 'commits', de forma a completar a frase: "Se eu 'baixar' seu commit, isto vai...". Exemplo:
+Também é recomendado utilizar títulos significativos para os 'commits'. Exemplos:
 ```
 "Implementa página de Login";
 "Adiciona Botão de Upload de foto";
@@ -14,7 +14,7 @@ Também é recomendado utilizar títulos significativos para os 'commits', de fo
 ```
 A cada 'commit' é executado um teste automático de compilação no TravisCI.
 Este teste leva um tempo considerável para finalizar, mas nos garante a funcionalidade contínua do projeto.
-Por tanto Pull Requests só serão aceitos se os testes tiverem resultado positivo.
+Portanto Pull Requests só serão aceitos se os testes tiverem resultado positivo.
 
 ## Requesitos:
 ### Node V10.0   https://nodejs.org/en/download/
