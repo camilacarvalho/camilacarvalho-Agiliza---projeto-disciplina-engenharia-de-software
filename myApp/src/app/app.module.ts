@@ -18,6 +18,11 @@ import { AngularFireAuthModule } from  'angularfire2/auth';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 import { GoogleLoginComponent } from './../components/google-login/google-login';
+import { PerfilProjetoPage } from '../pages/perfil-projeto/perfil-projeto';
+import { TarefasComponent } from '../components/tarefas/tarefas';
+import { GraficosComponent } from '../components/graficos/graficos';
+import { SobreComponent } from '../components/sobre/sobre';
+import { ColaboradoresComponent } from '../components/colaboradores/colaboradores';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxIg5B8z2F531HyxDiKSprhF-P4ueDi7Y",
@@ -33,7 +38,13 @@ export const firebaseConfig = {
     MyApp,
     GoogleLoginComponent,
     LoginPage,
-    HomePage
+    HomePage,
+    PerfilProjetoPage,
+    TarefasComponent,
+    PerfilProjetoPage,
+    GraficosComponent,
+    SobreComponent,
+    ColaboradoresComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +60,14 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     GoogleLoginComponent,
-    LoginPage
+    LoginPage,
+    PerfilProjetoPage,
+    TarefasComponent,
+    PerfilProjetoPage,
+    GraficosComponent,
+    SobreComponent,
+    ColaboradoresComponent
+
   ],
   providers: [
     GooglePlus,
