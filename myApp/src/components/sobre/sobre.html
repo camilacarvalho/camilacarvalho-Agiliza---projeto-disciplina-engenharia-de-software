@@ -1,4 +1,32 @@
+<ion-content padding>
+  <button ion-button small clear (click)="editar=false">Editar</button>
+  <br>
+  <ion-item-group>
+    <ion-avatar padding>
+      <img src="assets/imgs/img_padrao_projeto.png">
+    </ion-avatar>
+    <ion-item>
+      <ion-label stacked>Nome do projeto: </ion-label>
+      <ion-input [(ngModel)]="novo_projeto.nome" type="text" [disabled]="editar" [value]="projeto.nome"></ion-input>
+    </ion-item>
 
-  <ion-content padding>
-    <ion-title>Nome do projeto</ion-title>
-  </ion-content>
+    <ion-item>
+      <ion-label stacked>Descrição: </ion-label>
+      <ion-input [(ngModel)]="novo_projeto.descricao" type="text" [disabled]="editar" [value]="projeto.descricao"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Quantidade de Colaboradores: </ion-label>
+      <ion-input [(ngModel)]="novo_projeto.qnt_colaboradores" disabled type="number" [value]="projeto.qnt_colaboradores"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Previsão de término:</ion-label>
+      <ion-input [(ngModel)]="novo_projeto.previsao_finalizacao" [min] ="data_atual" type="date" [disabled]="editar" [value]="projeto.previsao_finalizacao"></ion-input>
+    </ion-item>
+
+  </ion-item-group>
+
+  <button *ngIf="editar==false" ion-button outline (click)="salvar()">Salvar</button>
+  <button *ngIf="editar==false" ion-button outline (click)="cancelar()">Cancelar</button>
+</ion-content>
