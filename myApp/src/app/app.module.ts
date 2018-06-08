@@ -23,6 +23,7 @@ import { TarefasComponent } from '../components/tarefas/tarefas';
 import { GraficosComponent } from '../components/graficos/graficos';
 import { SobreComponent } from '../components/sobre/sobre';
 import { ColaboradoresComponent } from '../components/colaboradores/colaboradores';
+import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxIg5B8z2F531HyxDiKSprhF-P4ueDi7Y",
@@ -44,7 +45,8 @@ export const firebaseConfig = {
     PerfilProjetoPage,
     GraficosComponent,
     SobreComponent,
-    ColaboradoresComponent
+    ColaboradoresComponent,
+    PerfilUsuarioPage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ export const firebaseConfig = {
     PerfilProjetoPage,
     GraficosComponent,
     SobreComponent,
-    ColaboradoresComponent
+    ColaboradoresComponent,
+    PerfilUsuarioPage
 
   ],
   providers: [
