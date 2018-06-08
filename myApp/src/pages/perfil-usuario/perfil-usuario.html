@@ -4,9 +4,10 @@
   <button ion-button small clear (click)="editar=false">Editar</button>
   <br>
     <ion-avatar padding>
-      <img src="assets/imgs/img_padrao_projeto.png">
+      <img [src]="novo_usuario.img">
     </ion-avatar>
-
+    <button ion-button small clear *ngIf="editar==false" (click)="tirarFoto()">Camera</button>
+    <button ion-button small clear *ngIf="editar==false" (click)="tirarFoto()">Galeria</button>   
     <ion-item>
       <ion-input autocomplete="on" [(ngModel)]="novo_usuario.nome" type="text" [disabled]="editar" [value]="usuario.nome"></ion-input>
     </ion-item>

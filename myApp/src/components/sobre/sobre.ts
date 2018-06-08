@@ -3,7 +3,8 @@ import { ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'sobre',
-  templateUrl: 'sobre.html'
+  templateUrl: 'sobre.html',
+  //providers: [Camera]
 })
 export class SobreComponent {
 
@@ -12,13 +13,25 @@ export class SobreComponent {
   private editar: boolean;
   private data_atual;
 
-  constructor(public toastCtrl: ToastController) {
+  constructor(//private camera: Camera,
+     public toastCtrl: ToastController) {
 
-    this.projeto = { nome: "Sarrafo", descricao: "Nosso sarrafo é o melhor!", qnt_colaboradores: 9, previsao_finalizacao: "2018-06-08" };
-    this.novo_projeto = { nome: this.projeto.nome, descricao: this.projeto.descricao, qnt_colaboradores: this.projeto.qnt_colaboradores, previsao_finalizacao: this.projeto.previsao_finalizacao };
+    this.projeto = { nome: "Sarrafo", img: "assets/imgs/img_padrao_projeto.png", descricao: "Nosso sarrafo é o melhor!", qnt_colaboradores: 9, previsao_finalizacao: "2018-06-08" };
+    this.novo_projeto = { nome: this.projeto.nome, img: this.projeto.img, descricao: this.projeto.descricao, qnt_colaboradores: this.projeto.qnt_colaboradores, previsao_finalizacao: this.projeto.previsao_finalizacao };
     this.editar = true;
   }
-
+  tirarFoto() {
+   /* const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      this.projeto.img = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+    });*/
+  }
   cancelar() {
     this.novo_projeto.nome = this.projeto.nome;
     this.novo_projeto.descricao = this.projeto.descricao;
@@ -34,7 +47,7 @@ export class SobreComponent {
       this.projeto.previsao_finalizacao = this.novo_projeto.previsao_finalizacao;
       this.editar = true;
       this.presentToast("Alterações salvas!");
-   }
+    }
   }
 
   presentToast(mensagem) {
