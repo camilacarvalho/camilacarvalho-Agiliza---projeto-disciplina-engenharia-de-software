@@ -5,6 +5,8 @@
     <ion-avatar padding>
       <img [src]="novo_projeto.img">
     </ion-avatar>
+    <button ion-button small clear *ngIf="editar==false" (click)="tirarFoto()">Camera</button>
+    <button ion-button small clear *ngIf="editar==false" (click)="tirarFoto()">Galeria</button>   
     <ion-item>
       <ion-label stacked>Nome do projeto: </ion-label>
       <ion-input [(ngModel)]="novo_projeto.nome" type="text" [disabled]="editar" [value]="projeto.nome"></ion-input>

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ToastController } from 'ionic-angular';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
   selector: 'sobre',
   templateUrl: 'sobre.html',
-  //providers: [Camera]
 })
 export class SobreComponent {
 
@@ -13,7 +13,7 @@ export class SobreComponent {
   private editar: boolean;
   private data_atual;
 
-  constructor(//private camera: Camera,
+  constructor(private camera: Camera,
      public toastCtrl: ToastController) {
 
     this.projeto = { nome: "Sarrafo", img: "assets/imgs/img_padrao_projeto.png", descricao: "Nosso sarrafo é o melhor!", qnt_colaboradores: 9, previsao_finalizacao: "2018-06-08" };
@@ -21,22 +21,23 @@ export class SobreComponent {
     this.editar = true;
   }
   tirarFoto() {
-   /* const options: CameraOptions = {
+    const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
     this.camera.getPicture(options).then((imageData) => {
-      this.projeto.img = 'data:image/jpeg;base64,' + imageData;
+      this.novo_projeto.img = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
-    });*/
+    });
   }
   cancelar() {
     this.novo_projeto.nome = this.projeto.nome;
     this.novo_projeto.descricao = this.projeto.descricao;
     this.novo_projeto.qnt_colaboradores = this.projeto.qnt_colaboradores;
     this.novo_projeto.previsao_finalizacao = this.projeto.previsao_finalizacao;
+    this.novo_projeto.img = this.projeto.img;
     this.editar = true;
   }
   salvar() {
@@ -45,6 +46,7 @@ export class SobreComponent {
       this.projeto.descricao = this.novo_projeto.descricao;
       this.projeto.qnt_colaboradores = this.novo_projeto.qnt_colaboradores;
       this.projeto.previsao_finalizacao = this.novo_projeto.previsao_finalizacao;
+      this.projeto.img = this.novo_projeto.img;
       this.editar = true;
       this.presentToast("Alterações salvas!");
     }

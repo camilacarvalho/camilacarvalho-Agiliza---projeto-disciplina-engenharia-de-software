@@ -12,7 +12,7 @@ import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any =  PerfilProjetoPage;
+  rootPage:any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
