@@ -31,12 +31,25 @@ export class PerfilUsuarioPage {
        quality: 100,
        destinationType: this.camera.DestinationType.DATA_URL,
        encodingType: this.camera.EncodingType.JPEG,
-       mediaType: this.camera.MediaType.PICTURE
+       mediaType: this.camera.MediaType.PICTURE   
      }
      this.camera.getPicture(options).then((imageData) => {
        this.novo_usuario.img = 'data:image/jpeg;base64,' + imageData;
      }, (err) => {
      });
+     
+   }
+   encontrarFoto(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY  
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      this.novo_usuario.img = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+    });
    }
   cancelar() {
     this.novo_usuario.nome = this.usuario.nome;

@@ -3,11 +3,15 @@
     <div padding>
   <button ion-button small clear (click)="editar=false">Editar</button>
   <br>
-    <ion-avatar padding>
+    <ion-avatar padding >
+      <div>
       <img [src]="novo_usuario.img">
+      
+      
+        <button ion-button small round outline  *ngIf="editar==false" (click)="tirarFoto()" icon-start><ion-icon name="ios-camera"></ion-icon> Camera</button><br>
+        <button ion-button small round outline  *ngIf="editar==false" (click)="encontrarFoto()" icon-start><ion-icon name="ios-image"></ion-icon> Galeria</button>   
+      </div>
     </ion-avatar>
-    <button ion-button small clear *ngIf="editar==false" (click)="tirarFoto()">Camera</button>
-    <button ion-button small clear *ngIf="editar==false" (click)="tirarFoto()">Galeria</button>   
     <ion-item>
       <ion-input autocomplete="on" [(ngModel)]="novo_usuario.nome" type="text" [disabled]="editar" [value]="usuario.nome"></ion-input>
     </ion-item>
