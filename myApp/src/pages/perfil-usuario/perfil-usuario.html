@@ -5,9 +5,9 @@
   <br>
     <ion-avatar padding>
       <img [src]="novo_usuario.img">
+      <button ion-button small  *ngIf="editar==false" (click)="tirarFoto()" round outline icon-start> <ion-icon name="ios-camera"></ion-icon>Camera</button><br>
+    <button ion-button small  *ngIf="editar==false" (click)="encontrarFoto()" round outline icon-start><ion-icon name="ios-image"></ion-icon>Galeria</button>   
     </ion-avatar>
-    <button ion-button small clear *ngIf="editar==false" (click)="tirarFoto()">Camera</button>
-    <button ion-button small clear *ngIf="editar==false" (click)="tirarFoto()">Galeria</button>   
     <ion-item>
       <ion-input autocomplete="on" [(ngModel)]="novo_usuario.nome" type="text" [disabled]="editar" [value]="usuario.nome"></ion-input>
     </ion-item>
@@ -45,3 +45,4 @@
   <button *ngIf="editar==false" ion-button outline (click)="cancelar()">Cancelar</button>
 </div>
 </ion-content>
+
