@@ -4,9 +4,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { LoginPage } from './../pages/login/login';
-
+import { ProjetosPage } from './../pages/projetos/projetos';
 
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
@@ -33,7 +32,7 @@ export const firebaseConfig = {
     MyApp,
     GoogleLoginComponent,
     LoginPage,
-    HomePage
+    ProjetosPage
   ],
   imports: [
     BrowserModule,
@@ -47,9 +46,9 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     GoogleLoginComponent,
-    LoginPage
+    LoginPage,
+    ProjetosPage
   ],
   providers: [
     GooglePlus,
