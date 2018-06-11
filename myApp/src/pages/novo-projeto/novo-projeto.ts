@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the NovoProjetoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NovoProjetoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private novoProjeto : FormGroup;
+
+  constructor ( public navCtrl: NavController, public navParams: NavParams,
+    private formBuilder: FormBuilder ) {
+
+    this.novoProjeto = this.formBuilder.group({
+        nome: ['', Validators.required],
+        descricao: ['', Validators.required],
+        previsao: [''],
+    });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NovoProjetoPage');
+  logForm() {
+    console.log(this.novoProjeto.value);
   }
 
   save() {
