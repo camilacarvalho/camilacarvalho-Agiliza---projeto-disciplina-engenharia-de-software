@@ -3,21 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 admin.initializeApp();
-exports.createUser = functions.auth.user().onCreate(event => {
-    const user = {
-        name: event.displayName,
-        firstName: "",
-        lastName: "",
-        photo: event.photoURL,
-        role: "",
-        city: "",
-        state: "",
-        country: "",
-        bio: ""
-    };
-    return admin.firestore().collection('users').doc(event.uid).set(user);
-});
-exports.helloWorld = functions.https.onRequest((request, response) => {
-    response.send("teste");
+exports.configureUser = functions.firestore.document('users/{userId}').onCreate(snap => {
+    var configuredUser = snap.data();
+    if (snap.data().profilePicture === null || snap.data().profilePicture === undefined || snap.data().profilePicture === "") {
+        configuredUser.profilePicture = "gs://fiery-cumbuca.appspot.com/userProfilePictures/profiledefault.png";
+    }
+    return admin.firestore().collection("users").doc(snap.id).set(configuredUser);
 });
 //# sourceMappingURL=index.js.map
