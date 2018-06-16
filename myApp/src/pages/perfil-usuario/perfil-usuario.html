@@ -1,0 +1,51 @@
+<ion-content>
+  <ion-navbar>
+    <div padding>
+  <button ion-button small clear (click)="editar=false">Editar</button>
+  <br>
+    <ion-avatar padding >
+      <div>
+      <img [src]="novo_usuario.img">
+      
+      
+        <button ion-button small round outline  *ngIf="editar==false" (click)="tirarFoto()" icon-start><ion-icon name="ios-camera"></ion-icon> Camera</button><br>
+        <button ion-button small round outline  *ngIf="editar==false" (click)="encontrarFoto()" icon-start><ion-icon name="ios-image"></ion-icon> Galeria</button>   
+      </div>
+    </ion-avatar>
+    <ion-item>
+      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.nome" type="text" [disabled]="editar" [value]="usuario.nome"></ion-input>
+    </ion-item>
+  </div>
+  </ion-navbar>
+  <div padding>
+    <ion-item>
+      <ion-label stacked>Cargo: </ion-label>
+      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.cargo" type="text" [disabled]="editar" [value]="usuario.cargo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Cidade: </ion-label>
+      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.cidade" [disabled]="editar" type="text" [value]="usuario.cidade"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>País:</ion-label>
+      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.pais" type="text" [disabled]="editar" [value]="usuario.pais"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Telefone:</ion-label>
+      <ion-input autocomplete="on"[(ngModel)]="novo_usuario.telefone" type="tel" [disabled]="editar" [value]="usuario.telefone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Email:</ion-label>
+      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.email" type="email" [disabled]="editar" [value]="usuario.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Bio:</ion-label>
+      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.bio" type="text" [disabled]="editar" [value]="usuario.bio"></ion-input>
+    </ion-item>
+  <button *ngIf="editar==false" ion-button outline (click)="salvar()">Salvar</button>
+  <button *ngIf="editar==false" ion-button outline (click)="cancelar()">Cancelar</button>
+</div>
+</ion-content>
