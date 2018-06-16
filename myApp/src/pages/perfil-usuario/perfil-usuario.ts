@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { GoogleLoginComponent } from '../../components/google-login/google-login';
 
 @IonicPage()
 @Component({
@@ -12,8 +13,12 @@ export class PerfilUsuarioPage {
   private novo_usuario: any;
   private editar: boolean;
 
-  constructor(private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
-    
+  constructor(
+     private camera: Camera,
+      public navCtrl: NavController,
+       public navParams: NavParams,
+        public toastCtrl: ToastController) {         
+
     this.usuario = {
       nome: "Camila Carvalho da Silva",
       img:"assets/imgs/img_padrao_projeto.png",
@@ -27,6 +32,7 @@ export class PerfilUsuarioPage {
   }
 
   tirarFoto() {
+    
     const options: CameraOptions = {
        quality: 100,
        destinationType: this.camera.DestinationType.DATA_URL,
@@ -97,3 +103,4 @@ export class PerfilUsuarioPage {
   }
 
 }
+

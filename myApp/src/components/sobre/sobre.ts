@@ -20,6 +20,20 @@ export class SobreComponent {
     this.novo_projeto = { nome: this.projeto.nome, img: this.projeto.img, descricao: this.projeto.descricao, qnt_colaboradores: this.projeto.qnt_colaboradores, previsao_finalizacao: this.projeto.previsao_finalizacao };
     this.editar = true;
   }
+
+  encontrarFoto(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY  
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      this.novo_projeto.img = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+    });
+   }
+
   tirarFoto() {
     const options: CameraOptions = {
       quality: 100,
@@ -93,3 +107,4 @@ export class SobreComponent {
   }
 
 }
+

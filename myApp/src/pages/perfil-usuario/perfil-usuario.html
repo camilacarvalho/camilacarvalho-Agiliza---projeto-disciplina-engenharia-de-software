@@ -1,26 +1,25 @@
 <ion-content>
   <ion-navbar>
-    <div padding>
-  <button ion-button small clear (click)="editar=false">Editar</button>
-  <br>
-    <ion-avatar padding >
-      <div>
-      <img [src]="novo_usuario.img">
-      
-      
-        <button ion-button small round outline  *ngIf="editar==false" (click)="tirarFoto()" icon-start><ion-icon name="ios-camera"></ion-icon> Camera</button><br>
-        <button ion-button small round outline  *ngIf="editar==false" (click)="encontrarFoto()" icon-start><ion-icon name="ios-image"></ion-icon> Galeria</button>   
-      </div>
-    </ion-avatar>
-    <ion-item>
-      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.nome" type="text" [disabled]="editar" [value]="usuario.nome"></ion-input>
-    </ion-item>
-  </div>
+    <div>
+      <button ion-button small clear (click)="editar=false" id="button_right">EDITAR</button>
+      <br>
+      <ion-avatar>
+        <img [src]="novo_usuario.img">
+      </ion-avatar>
+      <button ion-button small *ngIf="editar==false" (click)="tirarFoto()" round outline icon-start id="button_navbar">
+          <ion-icon name="ios-camera"></ion-icon>Câmera</button>
+        <br>
+        <button ion-button small *ngIf="editar==false" (click)="encontrarFoto()" round outline icon-start id="button_navbar">
+          <ion-icon name="ios-image"></ion-icon>Galeria</button>
+
+      <ion-input id="input_navbar" autocomplete="on" [(ngModel)]="novo_usuario.nome" type="text" [disabled]="editar" [value]="usuario.nome"></ion-input>
+
+    </div>
   </ion-navbar>
   <div padding>
     <ion-item>
       <ion-label stacked>Cargo: </ion-label>
-      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.cargo" type="text" [disabled]="editar" [value]="usuario.cargo"></ion-input>
+      <ion-textarea autocomplete="on" [(ngModel)]="novo_usuario.cargo" type="text" [disabled]="editar" [value]="usuario.cargo"></ion-textarea>
     </ion-item>
 
     <ion-item>
@@ -32,20 +31,21 @@
       <ion-label stacked>País:</ion-label>
       <ion-input autocomplete="on" [(ngModel)]="novo_usuario.pais" type="text" [disabled]="editar" [value]="usuario.pais"></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label stacked>Telefone:</ion-label>
-      <ion-input autocomplete="on"[(ngModel)]="novo_usuario.telefone" type="tel" [disabled]="editar" [value]="usuario.telefone"></ion-input>
+      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.telefone" type="tel" [disabled]="editar" [value]="usuario.telefone"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Email:</ion-label>
-      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.email" type="email" [disabled]="editar" [value]="usuario.email"></ion-input>
+      <ion-input [(ngModel)]="novo_usuario.email" disabled type="email" [value]="usuario.email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Bio:</ion-label>
-      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.bio" type="text" [disabled]="editar" [value]="usuario.bio"></ion-input>
+      <ion-textarea autocomplete="on" [(ngModel)]="novo_usuario.bio" type="text" [disabled]="editar" [value]="usuario.bio"></ion-textarea>
     </ion-item>
-  <button *ngIf="editar==false" ion-button outline (click)="salvar()">Salvar</button>
-  <button *ngIf="editar==false" ion-button outline (click)="cancelar()">Cancelar</button>
-</div>
+    <div padding>
+      <button *ngIf="editar==false" ion-button outline (click)="salvar()" padding>SALVAR</button>
+      <button *ngIf="editar==false" ion-button outline (click)="cancelar()">CANCELAR</button>
+    </div>
+  </div>
 </ion-content>
