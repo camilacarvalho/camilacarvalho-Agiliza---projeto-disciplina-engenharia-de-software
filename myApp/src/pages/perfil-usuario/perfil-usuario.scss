@@ -1,7 +1,67 @@
 page-perfil-usuario {
-    img {
-        border-radius:50%;
-        height:9rem;
-        width:9rem;
+    .content{
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        #input_navbar{  
+            padding: 0%;
+            background-color: color($colors, cor_azul1, base);
+            font-size: 1.3em;
+            .text-input{
+            text-align: center;
+            color: color($colors, light, base);
+            }
+        }
+        #button_right{
+            justify-content: left;
+            display: flex;
+            text-align: left;
+        }
+        ion-avatar{
+            justify-content: center;
+            display: flex;
+        }
+        text-align: center;
+        #button_right{
+            text-align: right;
+        }
+     }
+     img {
+        border-radius: 50%;
+        width: 12rem;
+        height: 12rem;
     }
+    .text-input{
+        font-size: 0.95em;
+    }
+    .item-input .label, .item-select .label, .item-datetime .label {
+        font-weight: bold;
+        color:color($colors, cor_verde1, base);
+    }
+   
+    .item.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+        border-bottom-color:color($colors,light, base);
+        -webkit-box-shadow: inset 0 0px 0;
+    }
+    
+    #button_navbar{
+        color: color($colors,cor_cinza, base);
+        border-color: color($colors, cor_cinza, base);
+    }
+    .button-outline{
+        color: color($colors, cor_azul1, base);
+        border-color: color($colors, cor_azul1, base);
+    }
+    .button-round {
+        padding: 0 0.6rem;
+    }
+    .text-input[disabled] {
+        opacity: 100;
+        color: color($colors, cor_azul1, base);
+    }
+    .button-clear {
+        color: color($colors, light, base);  
+    }
+     
 }
