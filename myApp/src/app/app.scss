@@ -67,3 +67,12 @@
 .tabs .tab-button-text {
     font-size: 1.1rem;
 }
+
+.fab{
+    color:color($colors,light, base);
+    background-color:color($colors, cor_azul1, base);
+}
+.fab.activated {
+    color:color($colors,light, base);
+    background-color:color($colors, cor_verde1, base);
+}
