@@ -11,7 +11,7 @@ export class SobreComponent {
   private projeto: any;
   private novo_projeto: any;
   private editar: boolean;
-  private data_atual;
+  private data_atual; 
 
   constructor(private camera: Camera,
      public toastCtrl: ToastController) {
