@@ -1,0 +1,29 @@
+page-notificacoes {
+    img {
+        border-radius:50%;
+        height:3rem;
+        width:3rem;
+    }
+    ion-card-content {
+        display: flex;
+    }
+    .content {
+        color: color($colors, cor_azul1, base);
+    }
+    ion-avatar img, ion-thumbnail img {
+        display: flex;
+        margin-right: 25px;
+    }
+    .bar-button-default, .bar-button-clear-default, .bar-button-default {
+        color:color($colors, light, base);
+    } 
+    .bar-button-default:hover:not(.disable-hover), .bar-button-clear-default:hover:not(.disable-hover), .bar-button-default:hover:not(.disable-hover) {
+        color: color($colors, cor_azul1, base);
+    }  
+    .card{
+        background:color($colors, cor_verde2, base);
+    }
+    .card-content {
+        font-size: 1.2rem;
+    } 
+}

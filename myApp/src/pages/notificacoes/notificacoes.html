@@ -1,0 +1,31 @@
+
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Notificações</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only>
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-card *ngFor="let notificacao of notificacoes" (click)="showAlert(notificacao)" disabled="true">
+          <ion-card-content *ngIf="notificacao.habilitado==true">
+              <ion-avatar>
+                  <img [src]="notificacao.imagem">
+                </ion-avatar>
+                {{notificacao.mensagem}}
+          </ion-card-content>
+          <ion-card-content *ngIf="notificacao.habilitado==false" style="background-color:#f4f4f4">
+            <ion-avatar>
+                <img [src]="notificacao.imagem">
+              </ion-avatar>
+              {{notificacao.mensagem}}
+        </ion-card-content>
+        </ion-card>
+  </ion-content>
+  

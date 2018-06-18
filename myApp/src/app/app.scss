@@ -7,6 +7,19 @@
 .toolbar-title {
     color: color($colors, light, base);
 }
+.alert .alert-message, .alert .alert-input-group {
+    color: color($colors, cor_azul2, base);
+    padding: 0 20px 20px;
+}
+h2 {
+    color: color($colors, cor_azul1, base);
+}
+.alert .alert-title {
+    font-size: 20px;
+}
+.alert .alert-button {
+    color: color($colors, cor_azul1, base);
+}
 .tabs .tabbar {
     background: color($colors, cor_azul1, base);
 }

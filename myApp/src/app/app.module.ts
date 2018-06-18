@@ -3,7 +3,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { MyApp } from './app.component';
+import { MyApp, TipoNotificacao } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from './../pages/login/login';
 
@@ -26,6 +26,7 @@ import { ColaboradoresComponent } from '../components/colaboradores/colaboradore
 import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
 import { Camera } from '@ionic-native/camera';
 import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
+import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxIg5B8z2F531HyxDiKSprhF-P4ueDi7Y",
@@ -44,6 +45,7 @@ export const firebaseConfig = {
     HomePage,
     AddAtividadeComponent,
     PerfilProjetoPage,
+    NotificacoesPage,
     TarefasComponent,
     GraficosComponent,
     SobreComponent,
@@ -66,6 +68,7 @@ export const firebaseConfig = {
     GoogleLoginComponent,
     LoginPage,
     PerfilProjetoPage,
+    NotificacoesPage,
     TarefasComponent,
     PerfilProjetoPage,
     GraficosComponent,
