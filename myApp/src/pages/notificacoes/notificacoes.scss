@@ -19,11 +19,5 @@ page-notificacoes {
     } 
     .bar-button-default:hover:not(.disable-hover), .bar-button-clear-default:hover:not(.disable-hover), .bar-button-default:hover:not(.disable-hover) {
         color: color($colors, cor_azul1, base);
-    }  
-    .card{
-        background:color($colors, cor_verde2, base);
     }
-    .card-content {
-        font-size: 1.2rem;
-    } 
 }

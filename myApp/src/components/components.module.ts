@@ -13,6 +13,7 @@ import { MenuNotificacoesComponent } from './menu-notificacoes/menu-notificacoes
     GraficosComponent,
     SobreComponent,
     AddAtividadeComponent,
+    MenuNotificacoesComponent,
     MenuNotificacoesComponent],
 	imports: [],
 	exports: [GoogleLoginComponent,
@@ -21,6 +22,7 @@ import { MenuNotificacoesComponent } from './menu-notificacoes/menu-notificacoes
     GraficosComponent,
     SobreComponent,
     AddAtividadeComponent,
+    MenuNotificacoesComponent,
     MenuNotificacoesComponent]
 })
 export class ComponentsModule {}

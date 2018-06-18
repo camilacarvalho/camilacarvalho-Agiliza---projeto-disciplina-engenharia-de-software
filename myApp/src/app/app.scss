@@ -17,6 +17,7 @@ h2 {
 .alert .alert-title {
     font-size: 20px;
 }
+
 .alert .alert-button {
     color: color($colors, cor_azul1, base);
 }
@@ -86,4 +87,22 @@ h2 {
 .fab.activated {
     color:color($colors,light, base);
     background-color:color($colors, cor_verde1, base);
+} 
+.card{
+    background:color($colors, cor_verde2, base);
+}
+.card-content {
+    font-size: 1.2rem;
+}
+.alert .alert-sub-title {
+    font-size: 14px;
+    color:color($colors, cor_verde2, base);
+}
+.alert-sub-title {
+    margin: 1px 0 0
+}
+.alert .alert-button {
+    color:color($colors, cor_azul2, base);
+    margin: 0 1px 0 0;
+    font-weight: 400;
 }
