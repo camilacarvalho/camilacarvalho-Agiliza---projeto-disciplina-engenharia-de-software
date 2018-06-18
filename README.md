@@ -1,4 +1,4 @@
-# projetoES (nome temporário)
+# Agiliza
 Projeto da disciplina de Engenharia de Software
 
 # Contribuindo:
