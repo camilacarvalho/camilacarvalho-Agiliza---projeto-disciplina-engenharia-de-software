@@ -1,0 +1,28 @@
+
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Notificações</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-searchbar (ionInput)="getNotificacoes($event)" ></ion-searchbar>
+      <button ion-button small clear (click)=" limparNotificacoes()">LIMPAR TUDO</button>      
+      <ion-card *ngFor="let notificacao of notificacoes" (press)="limparNotificacao(notificacao)" (click)="visualizarCard(notificacao)">
+          <ion-card-content *ngIf="notificacao.vista==true">
+              <ion-avatar>
+                  <img [src]="notificacao.imagem">
+                </ion-avatar>
+                {{notificacao.mensagem}}
+          </ion-card-content>
+          <ion-card-content *ngIf="notificacao.vista==false" style="background-color:#f4f4f4">
+            <ion-avatar>
+                <img [src]="notificacao.imagem">
+              </ion-avatar>
+              {{notificacao.mensagem}}
+        </ion-card-content>
+        </ion-card>
+  </ion-content>
+  

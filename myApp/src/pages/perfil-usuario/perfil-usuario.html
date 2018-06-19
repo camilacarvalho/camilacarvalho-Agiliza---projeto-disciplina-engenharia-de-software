@@ -1,7 +1,7 @@
 <ion-content>
   <ion-navbar>
     <div>
-      <button ion-button small clear (click)="editar=false" id="button_right">EDITAR</button>
+      <button ion-button small clear *ngIf="editar==true" (click)="editar=false" id="button_right">EDITAR</button>
       <br>
       <ion-avatar>
         <img [src]="novo_usuario.img">

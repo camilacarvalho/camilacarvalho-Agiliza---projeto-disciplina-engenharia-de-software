@@ -7,13 +7,14 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from './../pages/login/login';
 import { PerfilProjetoPage } from '../pages/perfil-projeto/perfil-projeto';
 import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
+import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any =  PerfilUsuarioPage;
+  rootPage:any =  NotificacoesPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -22,4 +23,3 @@ export class MyApp {
     });
   }
 }
-

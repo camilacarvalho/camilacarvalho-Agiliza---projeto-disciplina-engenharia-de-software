@@ -1,0 +1,93 @@
+add-atividade {
+    .scroll-content{
+        padding-bottom: 0 !important;
+      }
+     
+      .item.item-block .item-inner {
+        border-bottom: 0px solid #dedede;
+    }
+    .text-input-wp {
+        border: 0px solid
+ 
+    }
+#icon_menor{
+    font-size: 1.2em;
+    margin: 0px 6px 0px 0;
+}
+    a[disabled], button[disabled], [ion-button][disabled] {
+        opacity: 100;
+    }
+   
+    .item .item-button {
+        padding: 2;
+        height: 14px;
+        font-size: 1.0rem;
+    }
+    .item { 
+        padding-left: 0px;
+    }
+    .toolbar-content{
+        display: flex;
+    }
+    .button-small{
+        height: 1.5em;
+        padding: 0 0.7em;
+    }
+    .label {
+        font-weight: bold;
+        margin: 0px 0px 0px 0;
+        color:color($colors, cor_azul1, base);
+    }
+    .item-block {
+        min-height: 2.4rem;
+    }
+    ion-icon {
+        font-size: 1.9em;
+    }
+    .item.item .checkbox {
+        margin: 0px 9px 0px 0px;
+    }
+    .text-input {
+        margin: 5px 5px;
+        font-size: 1.05em;
+        color: color($colors, cor_verde1, base);
+        
+    }
+    .scroll-content {
+        padding-bottom: 0px;
+    }
+    ::-moz-placeholder{
+        -webkit-text-fill-color:color($colors, cor_azul2, base);
+        opacity: 100;
+    }
+    .button-clear {
+        color:color($colors, cor_azul1, base);
+        font-size: 0.95em;
+        font-weight: bold;
+    }
+
+    .checkbox .checkbox-checked {
+        border-color:color($colors, cor_azul2, base);
+        background-color:color($colors, cor_azul2, base);
+    }
+    .checkbox .checkbox-checked .checkbox-inner {
+        left: 1px;
+        top: 1px;
+        width: 5px;
+        height: 5px;
+        border-width: 1px;
+        border-color: color($colors, cor_azul2, base);
+    }
+    .checkbox .checkbox-icon {
+        border-radius: 0.5px;
+        border-width: 0.5px;
+        width: 9px;
+        height: 9px;
+        border-color: color($colors, cor_azul2, base);
+    }
+    #fonte-checkbox{
+        font-weight: normal;
+        font-size: 1.3rem;
+        color:color($colors, cor_azul2, base);
+    }
+}

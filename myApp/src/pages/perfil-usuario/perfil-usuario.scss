@@ -17,6 +17,7 @@ page-perfil-usuario {
             justify-content: left;
             display: flex;
             text-align: left;
+            color:color($colors, light, base);
         }
         ion-avatar{
             justify-content: center;
@@ -32,36 +33,11 @@ page-perfil-usuario {
         width: 12rem;
         height: 12rem;
     }
-    .text-input{
-        font-size: 0.95em;
-    }
-    .item-input .label, .item-select .label, .item-datetime .label {
-        font-weight: bold;
-        color:color($colors, cor_verde1, base);
-    }
-   
-    .item.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
-        border-bottom-color:color($colors,light, base);
-        -webkit-box-shadow: inset 0 0px 0;
-    }
     
     #button_navbar{
         color: color($colors,cor_cinza, base);
         border-color: color($colors, cor_cinza, base);
     }
-    .button-outline{
-        color: color($colors, cor_azul1, base);
-        border-color: color($colors, cor_azul1, base);
-    }
-    .button-round {
-        padding: 0 0.6rem;
-    }
-    .text-input[disabled] {
-        opacity: 100;
-        color: color($colors, cor_azul1, base);
-    }
-    .button-clear {
-        color: color($colors, light, base);  
-    }
+   
      
 }

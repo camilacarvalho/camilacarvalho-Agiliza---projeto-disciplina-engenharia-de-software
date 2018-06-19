@@ -25,6 +25,8 @@ import { SobreComponent } from '../components/sobre/sobre';
 import { ColaboradoresComponent } from '../components/colaboradores/colaboradores';
 import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
 import { Camera } from '@ionic-native/camera';
+import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
+import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxIg5B8z2F531HyxDiKSprhF-P4ueDi7Y",
@@ -41,14 +43,14 @@ export const firebaseConfig = {
     GoogleLoginComponent,
     LoginPage,
     HomePage,
+    AddAtividadeComponent,
     PerfilProjetoPage,
+    NotificacoesPage,
     TarefasComponent,
-    PerfilProjetoPage,
     GraficosComponent,
     SobreComponent,
     ColaboradoresComponent,
-    PerfilUsuarioPage
-  ],
+    PerfilUsuarioPage  ],
   imports: [
     BrowserModule,
     CommonModule,
@@ -65,13 +67,14 @@ export const firebaseConfig = {
     GoogleLoginComponent,
     LoginPage,
     PerfilProjetoPage,
+    NotificacoesPage,
     TarefasComponent,
     PerfilProjetoPage,
     GraficosComponent,
     SobreComponent,
     ColaboradoresComponent,
-    PerfilUsuarioPage
-
+    PerfilUsuarioPage,
+    AddAtividadeComponent
   ],
   providers: [
     GooglePlus,
