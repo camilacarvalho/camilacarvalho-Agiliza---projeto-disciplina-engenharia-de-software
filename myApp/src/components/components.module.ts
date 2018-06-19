@@ -5,24 +5,20 @@ import { ColaboradoresComponent } from './colaboradores/colaboradores';
 import { GraficosComponent } from './graficos/graficos';
 import { SobreComponent } from './sobre/sobre';
 import { AddAtividadeComponent } from './add-atividade/add-atividade';
-import { MenuNotificacoesComponent } from './menu-notificacoes/menu-notificacoes';
+
 @NgModule({
 	declarations: [GoogleLoginComponent,
     TarefasComponent,
     ColaboradoresComponent,
     GraficosComponent,
     SobreComponent,
-    AddAtividadeComponent,
-    MenuNotificacoesComponent,
-    MenuNotificacoesComponent],
+    AddAtividadeComponent],
 	imports: [],
 	exports: [GoogleLoginComponent,
     TarefasComponent,
     ColaboradoresComponent,
     GraficosComponent,
     SobreComponent,
-    AddAtividadeComponent,
-    MenuNotificacoesComponent,
-    MenuNotificacoesComponent]
+    AddAtividadeComponent]
 })
 export class ComponentsModule {}

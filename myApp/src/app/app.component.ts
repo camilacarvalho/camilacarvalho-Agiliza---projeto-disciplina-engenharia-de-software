@@ -23,18 +23,3 @@ export class MyApp {
     });
   }
 }
-
-export enum TipoNotificacao {
-  NovaAtividade="Nova Atividade",
-  Chat="Chat",
-  Revisao="Revisão"
-}
-/*export class Notificacao {
-  mensagem: string;
-  constructor(message: string) {
-      this.mensagem = message;
-  }
-  greet() {
-      return "Hello, " + this.mensagem;
-  }
-}*/

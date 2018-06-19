@@ -17,7 +17,9 @@ h2 {
 .alert .alert-title {
     font-size: 20px;
 }
-
+.searchbar-wp .searchbar-input-container {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
 .alert .alert-button {
     color: color($colors, cor_azul1, base);
 }
@@ -105,4 +107,21 @@ h2 {
     color:color($colors, cor_azul2, base);
     margin: 0 1px 0 0;
     font-weight: 400;
+}
+.searchbar .searchbar-input {
+    padding: 6px 55px;
+    font-size: 1.3rem;
+    color:color($colors, cor_azul1, base);
+}
+.searchbar-wp .searchbar-input {
+    padding: 1.7px 20px;
+    color:color($colors, cor_azul1, base);
+}
+
+.searchbar-ios {
+    padding: 0 8px;
+    min-height: 44px;
+    border-top: 0.05px solid transparent;
+    border-bottom: 0.05px solid color($colors, cor_cinza, base);
+    background:color($colors, light, base);
 }
