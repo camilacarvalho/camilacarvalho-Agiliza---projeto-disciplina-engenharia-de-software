@@ -144,6 +144,12 @@ export class NotificacoesPage {
       }
     });
   }
+
+  ionViewDidEnter(){
+    if(this.notificacoes.length<=0){
+    this.informacoes("Você não possui notificações!");
+    }
+  }
 }
 
 export enum TipoNotificacao {
