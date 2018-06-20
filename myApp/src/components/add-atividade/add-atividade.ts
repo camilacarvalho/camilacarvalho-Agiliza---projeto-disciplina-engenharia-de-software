@@ -61,6 +61,7 @@ export class AddAtividadeComponent {
     }else if(col == null){
       this.informacao(this.busca_colaborador + " não faz parte do seu projeto.");
     }
+
     this.busca_colaborador = "";
   }
 
