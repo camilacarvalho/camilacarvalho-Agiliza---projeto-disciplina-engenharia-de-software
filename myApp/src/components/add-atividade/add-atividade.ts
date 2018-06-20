@@ -56,7 +56,9 @@ export class AddAtividadeComponent {
     let col = this.getColaborador(this.busca_colaborador);
     if (col != null && this.colaboradorNaoAdicionado(col)) {
       this.atividade.colaboradores_atv.push(col);
-    } else if(col == null){
+    } else if(this.busca_colaborador.trim()==""){
+      this.informacao("Preencha o campo com o nome do colaborador!");
+    }else if(col == null){
       this.informacao(this.busca_colaborador + " não faz parte do seu projeto.");
     }
     this.busca_colaborador = "";
