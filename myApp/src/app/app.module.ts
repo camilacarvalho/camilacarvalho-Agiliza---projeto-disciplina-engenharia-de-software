@@ -12,6 +12,10 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { Firebase } from '@ionic-native/firebase';
+
+
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from  'angularfire2/auth';
@@ -27,6 +31,7 @@ import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
 import { Camera } from '@ionic-native/camera';
 import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
 import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
+import { FcmProvider } from '../providers/fcm/fcm';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxIg5B8z2F531HyxDiKSprhF-P4ueDi7Y",
@@ -81,7 +86,9 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Camera
+    Camera,
+    FcmProvider,
+    Firebase
   ]
 })
 export class AppModule {}

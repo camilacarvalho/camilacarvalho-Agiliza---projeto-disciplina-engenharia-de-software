@@ -9,6 +9,7 @@ import { PerfilProjetoPage } from '../pages/perfil-projeto/perfil-projeto';
 import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
 import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
 
+import { FcmProvider } from '../providers/fcm/fcm';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
 export class MyApp {
   rootPage:any =  NotificacoesPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(fcm: FcmProvider, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
