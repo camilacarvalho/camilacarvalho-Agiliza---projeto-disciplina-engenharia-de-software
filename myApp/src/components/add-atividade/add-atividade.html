@@ -24,12 +24,11 @@
     <ion-icon name="add" ></ion-icon>
   </button>
 </ion-item>
-
+<ion-item>
 <table class="table" *ngIf="atividade.colaboradores_atv.length > 0">
 <tbody>
 <ion-list *ngFor="let col of atividade.colaboradores_atv">
-     
-  <ion-item>
+  <ion-item (press)="removerColaborador(col)">
       <ion-avatar item-start>
           <img [src]="col.imagem">
         </ion-avatar>
@@ -39,6 +38,7 @@
 </ion-list>
 </tbody>
 </table>
+</ion-item>
 
 <ion-item>
 <button ion-button clear item-right (click)="criarAtividade()">Criar Atividade</button>

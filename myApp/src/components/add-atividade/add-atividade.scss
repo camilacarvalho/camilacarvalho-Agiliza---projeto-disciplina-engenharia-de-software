@@ -21,6 +21,11 @@ add-atividade {
         min-height: 30px;
     
     }
+
+    [padding] h1:first-child, [padding] h2:first-child, [padding] h3:first-child, [padding] h4:first-child, [padding] h5:first-child, [padding] h6:first-child {
+        margin-top: 0.3rem;
+    }
+
     .item ion-avatar[item-left], .item ion-thumbnail[item-left], .item ion-avatar[item-start], .item ion-thumbnail[item-start] {
         margin: 0px 0px 0px 0;
     }
@@ -30,9 +35,8 @@ add-atividade {
         font-size: 1.1rem;
     }
     .item h2 {
-
-        margin: 2px 0;
-            margin-top: 2px;
+        margin: 2px 1;
+        margin-top: 2px;
         font-size: 1.3rem;
     }
 
@@ -47,7 +51,7 @@ add-atividade {
         font-size: 1.3em;
     }
     .item .item-button {
-        padding: 2;
+        padding: 0.6em 0.6em;
         height: 14px;
         font-size: 1.0rem;
     }
@@ -140,12 +144,11 @@ add-atividade {
         display: inline-block;
     }
       tbody{
-        display: block; 
-        overflow-x: scroll;
+        display: block;
         overflow-y: scroll;
-        height: 70px;
+        height: 100px;
         }
-        .button-md {
+        .button{
             border-radius: 0px;
             height: 3.6rem;
             font-size: 1.4rem;
@@ -155,6 +158,6 @@ add-atividade {
       .table {
         border-collapse: collapse;
         background-color: #fff;
-        width: 100%;
+        width: 80%;
       }
 }

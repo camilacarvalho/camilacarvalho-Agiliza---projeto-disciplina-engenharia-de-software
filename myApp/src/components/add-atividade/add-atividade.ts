@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ToastController } from 'ionic-angular';
+import { ToastController, AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'add-atividade',
@@ -14,10 +14,31 @@ export class AddAtividadeComponent {
   private colaboradores = [];
   private colaborador: any;
 
-  constructor(public toastCtrl: ToastController) {
+  constructor(public toastCtrl: ToastController, public alertCtrl: AlertController) {
     this.listaColaboradores();
     this.colaborador = { nome: "", email: "", imagem: "" }
     this.atividade = { nome: "", prazo: "", agenda: false, colaboradores_atv: [] }
+  }
+
+  removerColaborador(colaborador){
+    const prompt = this.alertCtrl.create({
+      subTitle: "Deseja remover "+colaborador.nome+" desta atividade?",
+      buttons: [
+        { text: 'Não', },
+        {
+          text: 'Sim', handler: data => {
+              const index = this.atividade.colaboradores_atv.indexOf(colaborador);
+              console.log(index);
+              this.atividade.colaboradores_atv.splice(index, 1);
+              console.log(this.atividade.colaboradores_atv);
+              this.informacao("Colaborador removido da atividade!");
+            
+            
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   colaboradorExiste(nome): boolean {
