@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { Injectable } from '@angular/core';
 
@@ -17,31 +18,49 @@ import { Platform } from 'ionic-angular';
 @Injectable()
 export class FcmProvider {
 
-  constructor(public firebaseNative: Firebase,
+  constructor(private afAuth: AngularFireAuth,public firebaseNative: Firebase,
   public afs: AngularFirestore, public platform: Platform) {}
 
 
 
   async getToken(){
     let token;
-    if(this.platform.is('cordova')){
+    if(this.platform.is('android')){
       token =  await this.firebaseNative.getToken();
-    }else{
-      token = 'nao e cordova!'
+    }
+    else if (this.platform.is('ios')) {
+      token = await this.firebaseNative.getToken();
+      await this.firebaseNative.grantPermission();
+    }
+    else{
+      token = 'not available'
     }
     return this.saveTokenToFirestore(token);
   }
 
   // Save the token to firestore
-  private saveTokenToFirestore(tkn) {
+  private saveTokenToFirestore(token) {
+    if(!token){
+      return;
+    }
+    let userUid;
+    if(this.afAuth.auth.currentUser){
+      userUid = this.afAuth.auth.currentUser.uid;
+    }
+    else{
+      userUid = 'unavailable';
+    }
     const devicesRef = this.afs.collection('devices');
     const docData = {
-      token: tkn,
-      userId: 'UsuarioTest'
+      token,
+      userId: userUid,
+      test: "hello there"
     };
-    return this.afs.collection('devices').add(docData);
+    return devicesRef.doc(token).set(docData);
   }
 
 
-  listenToNotifications() {}
+  listenToNotifications() {
+    return this.firebaseNative.onNotificationOpen();
+  }
 }

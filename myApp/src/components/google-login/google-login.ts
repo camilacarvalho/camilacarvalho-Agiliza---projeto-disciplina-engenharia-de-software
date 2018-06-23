@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Platform, NavController } from 'ionic-angular';
+import { NotificacoesPage } from '../../pages/notificacoes/notificacoes';
 
 @Component({
   selector: 'google-login',
@@ -65,6 +66,10 @@ export class GoogleLoginComponent {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  gotoNotf(){
+    this.navCtrl.push(NotificacoesPage);
   }
 
   signOut() {

@@ -8,6 +8,7 @@
     <img src={{user.photoURL}} width="50" height="50"/>
 
     Olá {{ user.displayName }} Você está Logado(a)! Seu UID: {{ user.uid }}
+    <button ion-button (tap)="gotoNotf()">Notificações</button>
     <button ion-button (tap)="signOut()">
       Deslogar
     </button>
