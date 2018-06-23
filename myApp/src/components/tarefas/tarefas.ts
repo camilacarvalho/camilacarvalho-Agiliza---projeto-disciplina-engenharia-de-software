@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PopoverController } from 'ionic-angular';
+import { PopoverController, NavController } from 'ionic-angular';
 import { AddAtividadeComponent } from '../add-atividade/add-atividade';
 
 @Component({
@@ -8,10 +8,10 @@ import { AddAtividadeComponent } from '../add-atividade/add-atividade';
 })
 export class TarefasComponent {
 
-  constructor(public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController) {
   
   }
-  addAtividade(myEvent){
+addAtividade(myEvent){
     let popover = this.popoverCtrl.create(AddAtividadeComponent);
     popover.present({
       ev: myEvent
