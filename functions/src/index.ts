@@ -31,3 +31,31 @@ export const configureUser = functions.firestore.document('users/{userId}')
             .doc(userCreationRequest.id).set(userCreationRequest);
     });
 
+export const sendNotification = functions.firestore.document('notifications/{notificationId}')
+    .onCreate(async snap => {
+        const notification = snap.data();
+        const payload = {
+            notification: {
+                title: notification.type,
+                body: notification.message
+            }
+        }
+
+        const  devicesToNotify: string[] = [];
+        const userId = snap.data().userId;
+        const devicesRef = admin.firestore().collection('devices')
+        .where('userId', '==', notification.userId);
+        
+        const devices = await devicesRef.get();
+        
+        devices.forEach(device => {
+            devicesToNotify.push(device.data().token)
+        });
+
+        return admin.messaging().sendToDevice(devicesToNotify, payload);
+
+        
+       
+        
+    });
+
