@@ -43,7 +43,7 @@ export class GoogleLoginComponent {
     try {
 
       const gplusUser = await this.gplus.login({
-        'webClientId': 'AIzaSyCHY1oc0rxFbauSwUCTlXq5OdLvnBeLKiM',
+        'webClientId': '1007339278316-rgoodb6898i6rgdcsm0k6qklqgg1sb77.apps.googleusercontent.com',
         'offline': true,
         'scopes': 'profile email'
       })
