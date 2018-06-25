@@ -59,3 +59,41 @@ export const sendNotification = functions.firestore.document('notifications/{not
         
     });
 
+export const resizeProfilePic = functions.firestore.document('users/{userId}')
+    .onUpdate(async snap =>{
+        const dataBefore = snap.before.data();
+        const dataAfter = snap.after.data();
+
+        //Checking profile picture modification
+        if(dataBefore.profilePicture === dataAfter.profilePicture){
+            return;
+        }
+
+        const gm = require('gm').subClass({ imageMagick: true });
+        const photoFile = dataAfter.profilePicture;
+
+        //Image resizing Options
+        const width = 50
+        const height = 50
+        const option = "!"
+        const quality = 90
+
+        if(await admin.storage().bucket().file(photoFile).exists()){
+
+            const file = admin.storage().bucket().file(photoFile);
+            let stream = file.createReadStream();
+    
+            stream.on('error', function(err) {
+                console.error(err);
+                return;
+            })
+    
+            gm(stream).resize(width, height, option).quality(quality);
+                //.stream().pipe()
+    
+            console.log('Resized file: ' + photoFile);
+        }
+        else{
+            console.log("Couldn't resize image");
+        }
+    });
