@@ -1,6 +1,11 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import * as gcs from '@google-cloud/storage';
+import * as os from 'os';
+import * as path from 'path';
 
+
+const spawn = require('child-process-promise').spawn;
 admin.initializeApp();
 
 export const configureProject = functions.firestore
@@ -59,41 +64,38 @@ export const sendNotification = functions.firestore.document('notifications/{not
         
     });
 
-export const resizeProfilePic = functions.firestore.document('users/{userId}')
-    .onUpdate(async snap =>{
-        const dataBefore = snap.before.data();
-        const dataAfter = snap.after.data();
+    //Storage function: Resize thumbnails
+    exports.onFileChange = functions.storage.object().onFinalize(event =>{
 
-        //Checking profile picture modification
-        if(dataBefore.profilePicture === dataAfter.profilePicture){
-            return;
+        const bucket = event.bucket;
+        const contentType = event.contentType;
+        const filepath = event.name;
+        console.log('File change detected!! Executing function');
+        const destBucket = gcs().bucket(bucket);
+
+        //check if file exists
+        if(!destBucket.file(filepath).exists()){
+            return false;
         }
 
-        const gm = require('gm').subClass({ imageMagick: true });
-        const photoFile = dataAfter.profilePicture;
-
-        //Image resizing Options
-        const width = 50
-        const height = 50
-        const option = "!"
-        const quality = 90
-
-        if(await admin.storage().bucket().file(photoFile).exists()){
-
-            const file = admin.storage().bucket().file(photoFile);
-            let stream = file.createReadStream();
-    
-            stream.on('error', function(err) {
-                console.error(err);
-                return;
-            })
-    
-            gm(stream).resize(width, height, option).quality(quality);
-                //.stream().pipe()
-    
-            console.log('Resized file: ' + photoFile);
+        //check if file has been resized
+        if(path.basename(filepath).startsWith('resized-')){
+            console.log('File already renamed!');
+            return true;
         }
-        else{
-            console.log("Couldn't resize image");
-        }
+
+        const tmpFilePath = path.join(os.tmpdir(), path.basename(filepath));
+        const metadata = {contentType: contentType};
+
+        return destBucket.file(filepath).download({
+            destination: tmpFilePath
+        }).then(() =>{
+            return spawn('convert', [tmpFilePath, '-resize', '500x500', tmpFilePath]);
+        }).then(() =>{
+            return destBucket.upload(tmpFilePath, {destination: 'resized-' +
+             path.basename(filepath), metadata: metadata})
+        });
     });
+
+// This will crop square 300x300 px image from the center of the original:
+// return spawn('convert', [tempFilePath, '-gravity', 'center', '-crop', `300x300+0+0`, tempFilePath], { capture: ['stdout', 'stderr'] })﻿
