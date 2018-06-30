@@ -39,6 +39,14 @@ exports.configureUser = functions.firestore.document('users/{userId}')
     return admin.firestore().collection("users")
         .doc(userCreationRequest.id).set(userCreationRequest);
 });
+exports.buildUser = functions.auth.user().onCreate(snap => {
+    const user = {
+        name: snap.displayName,
+        email: snap.email
+    };
+    //O id do documento que representa o usuario sera dado pelo uid do usuario.
+    return admin.firestore().collection("users").doc(snap.uid).set(user);
+});
 exports.sendNotification = functions.firestore.document('notifications/{notificationId}')
     .onCreate((snap) => __awaiter(this, void 0, void 0, function* () {
     const notification = snap.data();
@@ -58,18 +66,22 @@ exports.sendNotification = functions.firestore.document('notifications/{notifica
     });
     return admin.messaging().sendToDevice(devicesToNotify, payload);
 }));
+//Storage function: Resize thumbnails
 exports.onFileChange = functions.storage.object().onFinalize(event => {
     const bucket = event.bucket;
     const contentType = event.contentType;
     const filepath = event.name;
     console.log('File change detected!! Executing function');
+    const destBucket = gcs().bucket(bucket);
     //check if file exists
+    if (!destBucket.file(filepath).exists()) {
+        return false;
+    }
     //check if file has been resized
     if (path.basename(filepath).startsWith('resized-')) {
         console.log('File already renamed!');
         return true;
     }
-    const destBucket = gcs().bucket(bucket);
     const tmpFilePath = path.join(os.tmpdir(), path.basename(filepath));
     const metadata = { contentType: contentType };
     return destBucket.file(filepath).download({

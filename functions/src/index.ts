@@ -36,6 +36,19 @@ export const configureUser = functions.firestore.document('users/{userId}')
             .doc(userCreationRequest.id).set(userCreationRequest);
     });
 
+export const buildUser = functions.auth.user().onCreate(snap => {
+    const user = {
+        name: snap.displayName,
+        email: snap.email
+    }
+    //O id do documento que representa o usuario sera dado pelo uid do usuario.
+    return admin.firestore().collection("users").doc(snap.uid).set(user);
+
+    
+
+
+});    
+
 export const sendNotification = functions.firestore.document('notifications/{notificationId}')
     .onCreate(async snap => {
         const notification = snap.data();
