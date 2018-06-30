@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Novo Projeto</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="novoProjeto" (ngSubmit)="logForm()">
+       <ion-item>
+         <ion-label>Nome do Projeto</ion-label>
+         <ion-input type="text" formControlName="nome"></ion-input>
+       </ion-item>
+
+       <ion-item>
+         <ion-label>Descrição</ion-label>
+         <ion-input type="text" formControlName="descricao"></ion-input>
+       </ion-item>
+
+       <ion-item>
+         <ion-label>Previsão de término</ion-label>
+         <ion-textarea formControlName="dataTermino"></ion-textarea>
+       </ion-item>
+     </form>
+</ion-content>
+
+<ion-footer>
+  <ion-buttons end>
+    <button ion-button>
+      <button ion-button (click)="save()" [disabled]="!novoProjeto.valid" full>Salvar</button>
+    </button>
+    <button ion-button color="danger">
+      <button ion-button color="danger" (click)="cancel()">Cancelar</button>
+    </button>
+  </ion-buttons>
+</ion-footer>

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-buttons start>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-navbar>
+    <ion-title>Gerenciando</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row>
+    <ion-col *ngFor="let projeto of projetosSendoGerenciadosObject">
+      <button ion-item (click)="buttonProjetoClick()">
+        <img src="/../../resources/icon.png" alt="">
+        <h1> {{projeto.nome}} </h1>
+        <h3> {{projeto.dataInicio}} - {{projeto.dataTermino}} </h3>
+        <h2> {{projeto.descricao}} </h2>
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+
+<ion-footer>
+  <ion-buttons end>
+    <button ion-button full (click)="novoProjeto()">
+      <ion-icon name="add-circle" (click)="novoProjeto()"> </ion-icon>
+      Criar novo projeto
+    </button>
+  </ion-buttons>
+</ion-footer>

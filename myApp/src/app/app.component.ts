@@ -7,9 +7,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 
 import { ConfigProvider } from '../providers/config/config';
 import { HomePage } from '../pages/home/home';
-import { PerfilProjetoPage } from '../pages/perfil-projeto/perfil-projeto';
-import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
-import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
+import { ProjetosPage } from '../pages/projetos/projetos';
 
 
 @Component({
@@ -18,30 +16,32 @@ import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
     ConfigProvider
   ]
 })
-export class MyApp {
-  rootPage: any;
 
-  constructor(platform: Platform,
-    statusBar: StatusBar,
-    splashScreen: SplashScreen,
-    configProvider: ConfigProvider) {
+  export class MyApp {
+    rootPage: any;
 
-    platform.ready().then(() => {
+    constructor(platform: Platform,
+      statusBar: StatusBar,
+      splashScreen: SplashScreen,
+      configProvider: ConfigProvider) {
 
-    // Verifies the root page of the application.
-      let config = configProvider.getConfigData();
-      
-      if (config == null) {
-        this.rootPage = WelcomePage;
-        configProvider.setConfigData(false);
-      } else {
-        this.rootPage = HomePage;
-      }
+      platform.ready().then(() => {
 
-      console.log(config);
+      // Verifies the root page of the application.
+        let config = configProvider.getConfigData();
 
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
+        if (config == null) {
+          this.rootPage = WelcomePage;
+          configProvider.setConfigData(false);
+        } else {
+          this.rootPage = HomePage;
+        }
+
+        console.log(config);
+
+        statusBar.styleDefault();
+        splashScreen.hide();
+      });
+    }
+
 }

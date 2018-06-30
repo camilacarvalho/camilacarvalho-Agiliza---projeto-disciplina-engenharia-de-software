@@ -5,9 +5,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { PerfilProjetoPage } from '../pages/perfil-projeto/perfil-projeto';
-import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { ProjetosPage } from '../pages/projetos/projetos';
+import { ColaborandoPage } from '../pages/colaborando/colaborando';
+import { GerenciandoPage } from '../pages/gerenciando/gerenciando';
+import { ProjetoPage } from '../pages/projeto/projeto';
+
+
 
 
 import { CommonModule } from '@angular/common';
@@ -50,12 +54,10 @@ export const firebaseConfig = {
     SobreComponent,
     AddAtividadeComponent,
     TarefasComponent,
-    ColaboradoresComponent, 
+    ColaboradoresComponent,
     HomePage,
     WelcomePage,
-    PerfilProjetoPage,
-    PerfilUsuarioPage,
-    NotificacoesPage,
+    NotificacoesPage
   ],
   imports: [
     BrowserModule,
@@ -76,14 +78,10 @@ export const firebaseConfig = {
     GraficosComponent,
     SobreComponent,
     AddAtividadeComponent,
-    PerfilProjetoPage,
     NotificacoesPage,
     TarefasComponent,
     HomePage,
-    WelcomePage,
-    PerfilProjetoPage,
-    PerfilProjetoPage,
-    PerfilUsuarioPage
+    WelcomePage
   ],
   providers: [
     GooglePlus,

@@ -15,9 +15,9 @@ export class WelcomePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
   }
-  
+
   goToLoginPage() {
     this.navCtrl.push(HomePage);
   }
-  
+
 }

@@ -13,4 +13,7 @@ export class HomePage {
 
   }
 
+  pular() {
+    this.navCtrl.push('ProjetosPage');
+  }
 }
