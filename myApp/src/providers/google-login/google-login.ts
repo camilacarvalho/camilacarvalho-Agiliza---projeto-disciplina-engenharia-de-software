@@ -1,28 +1,26 @@
-import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import { Platform, NavController } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
-@Component({
-  selector: 'google-login',
-  templateUrl: 'google-login.html'
-})
-export class GoogleLoginComponent {
+
+@Injectable()
+export class GoogleLoginProvider {
 
   user: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
-    private platform: Platform,
-    public navCtrl: NavController) {
+    private platform: Platform) {
 
     this.user = this.afAuth.authState;
 
   }
+
   getPhoto() {
     this.user.subscribe((auth) => {
       if (auth != null) {
@@ -30,7 +28,8 @@ export class GoogleLoginComponent {
       }
     })
   }
-  googleLogin() {
+
+  login() {
     if (this.platform.is('cordova')) {
       this.nativeGoogleLogin();
     } else {
@@ -68,7 +67,7 @@ export class GoogleLoginComponent {
   }
 
   signOut() {
- 
+
     this.afAuth.auth.signOut();
 
     if (this.platform.is('cordova')) {
