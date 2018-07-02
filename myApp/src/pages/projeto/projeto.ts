@@ -14,10 +14,10 @@ import { SobreComponent } from '../../components/sobre/sobre';
 
 @IonicPage()
 @Component({
-  selector: 'page-perfil-projeto',
-  templateUrl: 'perfil-projeto.html',
+  selector: 'page-projeto',
+  templateUrl: 'projeto.html',
 })
-export class PerfilProjetoPage {
+export class ProjetoPage {
   tab1: any;
   tab2: any;
   tab3: any;

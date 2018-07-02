@@ -4,6 +4,10 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from  'angularfire2/auth';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { CommonModule } from '@angular/common';
+
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -12,26 +16,26 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { Camera } from '@ionic-native/camera';
 import { Firebase } from '@ionic-native/firebase';
 
-import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
-import { BrowserModule } from '@angular/platform-browser';
-
 import { TarefasComponent } from '../components/tarefas/tarefas';
 import { GraficosComponent } from '../components/graficos/graficos';
 import { SobreComponent } from '../components/sobre/sobre';
 import { ColaboradoresComponent } from '../components/colaboradores/colaboradores';
+import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
 
 import { ConfigProvider } from '../providers/config/config';
-import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
 import { FcmProvider } from '../providers/fcm/fcm';
-import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
 import { GoogleLoginProvider } from '../providers/google-login/google-login';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { PerfilProjetoPage } from '../pages/perfil-projeto/perfil-projeto';
-import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { ProjetosPage } from '../pages/projetos/projetos';
+import { ColaborandoPage } from '../pages/colaborando/colaborando';
+import { GerenciandoPage } from '../pages/gerenciando/gerenciando';
+import { ProjetoPage } from '../pages/projeto/projeto';
+import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
+import { SettingsPage } from '../pages/settings/settings';
+import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
 
 
 export const firebaseConfig = {
@@ -53,12 +57,9 @@ export const firebaseConfig = {
     SobreComponent,
     AddAtividadeComponent,
     TarefasComponent,
-    ColaboradoresComponent, 
+    ColaboradoresComponent,
     HomePage,
-    WelcomePage,
-    PerfilProjetoPage,
-    PerfilUsuarioPage,
-    NotificacoesPage,
+    WelcomePage
   ],
   imports: [
     BrowserModule,
@@ -78,14 +79,9 @@ export const firebaseConfig = {
     GraficosComponent,
     SobreComponent,
     AddAtividadeComponent,
-    PerfilProjetoPage,
-    NotificacoesPage,
     TarefasComponent,
     HomePage,
-    WelcomePage,
-    PerfilProjetoPage,
-    PerfilProjetoPage,
-    PerfilUsuarioPage
+    WelcomePage
   ],
   providers: [
     GooglePlus,

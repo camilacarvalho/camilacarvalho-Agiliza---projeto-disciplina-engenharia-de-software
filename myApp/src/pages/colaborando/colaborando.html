@@ -1,0 +1,52 @@
+<!--
+  Generated template for the ColaborandoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--
+<ion-header>
+  <ion-buttons start>
+
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-navbar>
+    <ion-title>Colaborando</ion-title>
+  </ion-navbar>
+
+</ion-header>
+-->
+<ion-header>
+  <ion-navbar>
+    <!--
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    -->
+    <ion-title>
+      Colaborando
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="loadSettingsPage()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col *ngFor="let projeto of projetosSendoColaboradorObject">
+      <button ion-item (click)="buttonProjetoClick()">
+        <img src="/../../resources/icon.png" alt="">
+        <h1> {{projeto.nome}} </h1>
+        <h3> {{projeto.dataInicio}} - {{projeto.dataTermino}} </h3>
+        <h2> {{projeto.descricao}} </h2>
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

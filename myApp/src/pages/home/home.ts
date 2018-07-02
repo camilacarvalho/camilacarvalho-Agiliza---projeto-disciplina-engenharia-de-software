@@ -40,4 +40,7 @@ export class HomePage {
     this.googleLoginProvider.signOut();
   }
 
+  pular() {
+    this.navCtrl.push('ProjetosPage');
+  }
 }

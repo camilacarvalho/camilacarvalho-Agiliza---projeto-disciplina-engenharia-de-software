@@ -1,7 +1,7 @@
 import { Component, trigger } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { AlertController, ToastController } from 'ionic-angular';
-import { PerfilProjetoPage } from '../perfil-projeto/perfil-projeto';
+import { ProjetoPage } from '../projeto/projeto';
 import { SobreComponent } from '../../components/sobre/sobre';
 import { FcmProvider } from '../../providers/fcm/fcm';
 
@@ -76,10 +76,10 @@ export class NotificacoesPage {
         handler: data => {
           if (notificacao.tipo == TipoNotificacao.NovoProjeto)
             //adiciona o colaborador ao projeto
-            this.navCtrl.push(PerfilProjetoPage);
+            this.navCtrl.push(ProjetoPage);
           else
             //marcar atividade como concluída
-            this.navCtrl.push(PerfilProjetoPage);
+            this.navCtrl.push(ProjetoPage);
         }
       }, {
         text: 'recusar',
@@ -106,7 +106,7 @@ export class NotificacoesPage {
               this.notificacoes = [];
               this.informacoes("Notificações excluídas!");
             }
-            
+
           }
         }
       ]
@@ -124,7 +124,7 @@ export class NotificacoesPage {
 
       case TipoNotificacao.NovaAtividade:
       case TipoNotificacao.Prazo:
-        this.navCtrl.push(PerfilProjetoPage);
+        this.navCtrl.push(ProjetoPage);
         break;
 
       case TipoNotificacao.NovoProjeto:

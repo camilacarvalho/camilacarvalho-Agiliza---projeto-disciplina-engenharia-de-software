@@ -12,9 +12,7 @@ import { GoogleLoginProvider } from './../providers/google-login/google-login';
 
 import { WelcomePage } from '../pages/welcome/welcome';
 import { HomePage } from '../pages/home/home';
-import { PerfilProjetoPage } from '../pages/perfil-projeto/perfil-projeto';
-import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
-import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
+import { ProjetosPage } from '../pages/projetos/projetos';
 
 
 @Component({
