@@ -19,7 +19,6 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from  'angularfire2/auth';
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import { GoogleLoginComponent } from './../components/google-login/google-login';
 import { TarefasComponent } from '../components/tarefas/tarefas';
 import { GraficosComponent } from '../components/graficos/graficos';
 import { SobreComponent } from '../components/sobre/sobre';
@@ -30,6 +29,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ConfigProvider } from '../providers/config/config';
 import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
 import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
+import { GoogleLoginProvider } from '../providers/google-login/google-login';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxIg5B8z2F531HyxDiKSprhF-P4ueDi7Y",
@@ -43,7 +43,6 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    GoogleLoginComponent,
     ColaboradoresComponent,
     TarefasComponent,
     GraficosComponent,
@@ -71,7 +70,6 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    GoogleLoginComponent,
     ColaboradoresComponent,
     GraficosComponent,
     SobreComponent,
@@ -91,7 +89,8 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
-    ConfigProvider
+    ConfigProvider,
+    GoogleLoginProvider
   ]
 })
 export class AppModule {}

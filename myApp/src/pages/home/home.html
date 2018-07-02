@@ -1,33 +1,35 @@
 <ion-content class="background">
-  
+
   <ion-title>
-    <h1>AgilizApp!</h1>
+    <h1>Agiliza!</h1>
     <h5>Gerenciador de Projetos</h5>
   </ion-title>
 
   <ion-card>
     <ion-card-content text-center>
-      <div class="inputs">
+      <div class="inputs" *ngIf="(user | async) || {} as user">
+        <div *ngIf="!user.uid">
+          <ion-list no-line>
+            <ion-item>
+              <ion-label>Email</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
 
-        <ion-list no-line>
-          <ion-item>
-            <ion-label>Email</ion-label>
-            <ion-input type="text"></ion-input>
-          </ion-item>
-        
-          <ion-item class="pass">
-            <ion-label>Password</ion-label>
-            <ion-input type="password"></ion-input>
-          </ion-item>
+            <ion-item class="pass">
+              <ion-label>Password</ion-label>
+              <ion-input type="password"></ion-input>
+            </ion-item>
 
-          <a>Forgot <b>Username or Password?</b></a>
-          <button ion-button block class="button-login">Login</button>
-          <button ion-button block color="app-green">
-            <ion-icon name="logo-google"></ion-icon>
-            Login with Google 
-          </button>
-        </ion-list>
-
+            <a>Forgot
+              <b>Username or Password?</b>
+            </a>
+            <button ion-button block class="button-login">Login</button>
+            <button ion-button block color="app-green" (tap)="googleLogin()">
+              <ion-icon name="logo-google"></ion-icon>
+              Login with Google
+            </button>
+          </ion-list>
+        </div>
       </div>
     </ion-card-content>
   </ion-card>
