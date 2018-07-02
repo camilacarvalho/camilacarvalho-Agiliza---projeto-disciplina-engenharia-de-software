@@ -40,7 +40,8 @@ export const firebaseConfig = {
   databaseURL: "https://fiery-cumbuca.firebaseio.com",
   projectId: "fiery-cumbuca",
   storageBucket: "fiery-cumbuca.appspot.com",
-  messagingSenderId: "1007339278316"
+  messagingSenderId: "1007339278316",
+  timestampsInSnapshots: true
 };
 
 @NgModule({

@@ -53,7 +53,7 @@ export class GoogleLoginProvider {
         firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
 
     } catch (err) {
-      console.log(err)
+      console.log("Native Google Plus Login Error code:" + err);
     }
 
   }
