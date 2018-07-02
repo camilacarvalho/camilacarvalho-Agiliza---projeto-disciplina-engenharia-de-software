@@ -1,0 +1,49 @@
+<ion-content>
+  <ion-navbar padding>
+  <ion-input type="text" required [(ngModel)]="atividade.nome" placeholder="NOVA ATIVIDADE"></ion-input>
+  <ion-icon name="ios-create" color="light"></ion-icon>
+</ion-navbar>
+<div padding>
+<ion-item>
+<ion-label><ion-icon name="md-calendar" id="icon_menor"></ion-icon>Prazo de entrega</ion-label>
+</ion-item>
+<ion-item>
+<ion-input [min] ="data_atual" type="date" style="font-size: 0.90em;" [disabled]="editar" [(ngModel)]="atividade.prazo"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label id="fonte-checkbox">Criar evento na agenda</ion-label>
+  <ion-checkbox [(ngModel)]="atividade.agenda"></ion-checkbox>
+</ion-item>
+<br>
+
+<ion-item>
+<ion-label><ion-icon name="ios-people" id="icon_menor"></ion-icon>Atribuir a...</ion-label></ion-item>
+<ion-item>
+<ion-input type="text" [(ngModel)]="busca_colaborador" style="border-bottom: 1px solid #dedede;" placeholder="Colaborador"></ion-input>
+  <button ion-button clear style="padding: 10px;" item-right (click)="adicionarColaborador()">
+    <ion-icon name="add" ></ion-icon>
+  </button>
+</ion-item>
+<ion-item>
+<table class="table" *ngIf="atividade.colaboradores_atv.length > 0">
+<tbody>
+<ion-list *ngFor="let col of atividade.colaboradores_atv">
+  <ion-item (press)="removerColaborador(col)">
+      <ion-avatar item-start>
+          <img [src]="col.imagem">
+        </ion-avatar>
+        <h2>{{col.nome}}</h2>
+        <p>{{col.email}}</p>
+  </ion-item>
+</ion-list>
+</tbody>
+</table>
+</ion-item>
+
+<ion-item>
+<button ion-button clear item-right (click)="criarAtividade()">Criar Atividade</button>
+</ion-item>
+
+</div>
+</ion-content>
+

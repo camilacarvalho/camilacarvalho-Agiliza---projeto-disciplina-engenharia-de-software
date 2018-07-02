@@ -1,0 +1,43 @@
+page-perfil-usuario {
+    .content{
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        #input_navbar{  
+            padding: 0%;
+            background-color: color($colors, cor_azul1, base);
+            font-size: 1.3em;
+            .text-input{
+            text-align: center;
+            color: color($colors, light, base);
+            }
+        }
+        #button_right{
+            justify-content: left;
+            display: flex;
+            text-align: left;
+            color:color($colors, light, base);
+        }
+        ion-avatar{
+            justify-content: center;
+            display: flex;
+        }
+        text-align: center;
+        #button_right{
+            text-align: right;
+        }
+     }
+     img {
+        border-radius: 50%;
+        width: 12rem;
+        height: 12rem;
+    }
+    
+    #button_navbar{
+        color: color($colors,cor_cinza, base);
+        border-color: color($colors, cor_cinza, base);
+    }
+   
+     
+}

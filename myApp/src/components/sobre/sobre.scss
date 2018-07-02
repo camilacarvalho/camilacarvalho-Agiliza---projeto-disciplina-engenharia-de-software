@@ -1,0 +1,13 @@
+sobre {
+    img {
+        border-radius:50%;
+        height:8rem;
+        width:8rem;
+    }
+    .col {
+        padding: 0px;
+    }
+    .tabs-md[tabsLayout="icon-hide"] .tab-button, .tabs-md[tabsLayout="title-hide"] .tab-button, .tabs-md .tab-button.icon-only, .tabs-md .tab-button.has-title-only {
+        padding: 0%;
+    }
+}

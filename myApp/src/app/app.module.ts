@@ -5,7 +5,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { LoginPage } from './../pages/login/login';
+import { PerfilProjetoPage } from '../pages/perfil-projeto/perfil-projeto';
+import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
+import { WelcomePage } from '../pages/welcome/welcome';
 
 
 import { CommonModule } from '@angular/common';
@@ -18,6 +20,16 @@ import { AngularFireAuthModule } from  'angularfire2/auth';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 import { GoogleLoginComponent } from './../components/google-login/google-login';
+import { TarefasComponent } from '../components/tarefas/tarefas';
+import { GraficosComponent } from '../components/graficos/graficos';
+import { SobreComponent } from '../components/sobre/sobre';
+import { ColaboradoresComponent } from '../components/colaboradores/colaboradores';
+import { Camera } from '@ionic-native/camera';
+import { IonicStorageModule } from '@ionic/storage';
+
+import { ConfigProvider } from '../providers/config/config';
+import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
+import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxIg5B8z2F531HyxDiKSprhF-P4ueDi7Y",
@@ -32,8 +44,18 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     GoogleLoginComponent,
-    LoginPage,
-    HomePage
+    ColaboradoresComponent,
+    TarefasComponent,
+    GraficosComponent,
+    SobreComponent,
+    AddAtividadeComponent,
+    TarefasComponent,
+    ColaboradoresComponent, 
+    HomePage,
+    WelcomePage,
+    PerfilProjetoPage,
+    PerfilUsuarioPage,
+    NotificacoesPage,
   ],
   imports: [
     BrowserModule,
@@ -42,21 +64,34 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     GoogleLoginComponent,
-    LoginPage
+    ColaboradoresComponent,
+    GraficosComponent,
+    SobreComponent,
+    AddAtividadeComponent,
+    PerfilProjetoPage,
+    NotificacoesPage,
+    TarefasComponent,
+    HomePage,
+    WelcomePage,
+    PerfilProjetoPage,
+    PerfilProjetoPage,
+    PerfilUsuarioPage
   ],
   providers: [
     GooglePlus,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-
+    Camera,
+    ConfigProvider
   ]
 })
 export class AppModule {}

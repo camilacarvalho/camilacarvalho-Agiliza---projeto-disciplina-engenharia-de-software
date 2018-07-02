@@ -5,15 +5,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import { Platform } from 'ionic-angular';
+import { Platform, NavController } from 'ionic-angular';
 
-
-/**
- * Generated class for the GoogleLoginComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'google-login',
   templateUrl: 'google-login.html'
@@ -23,55 +16,62 @@ export class GoogleLoginComponent {
   user: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth,
-              private gplus: GooglePlus,
-              private platform: Platform) {
+    private gplus: GooglePlus,
+    private platform: Platform,
+    public navCtrl: NavController) {
 
     this.user = this.afAuth.authState;
 
   }
-
-  googleLogin(){
-    if(this.platform.is('cordova')){
+  getPhoto() {
+    this.user.subscribe((auth) => {
+      if (auth != null) {
+        return this.afAuth.auth.currentUser.photoURL;
+      }
+    })
+  }
+  googleLogin() {
+    if (this.platform.is('cordova')) {
       this.nativeGoogleLogin();
-    } else{
+    } else {
       this.webGoogleLogin();
     }
   }
 
-  async nativeGoogleLogin(): Promise<void>{
+  async nativeGoogleLogin(): Promise<void> {
 
     try {
 
       const gplusUser = await this.gplus.login({
-        'webClientId': 'removed for safety :p',//remeber to export this constant later as env variable
+        'webClientId': '1007339278316-rgoodb6898i6rgdcsm0k6qklqgg1sb77.apps.googleusercontent.com',
         'offline': true,
         'scopes': 'profile email'
       })
       return await this.afAuth.auth.signInWithCredential(
         firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
 
-    } catch (err){
+    } catch (err) {
       console.log(err)
     }
 
   }
 
   async webGoogleLogin(): Promise<void> {
-    try{
+    try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credential = await this.afAuth.auth.signInWithPopup(provider);
 
       return credential;
-    } catch(err) {
+    } catch (err) {
       console.log(err)
     }
   }
 
   signOut() {
-    
+ 
     this.afAuth.auth.signOut();
 
-    if (this.platform.is('cordova')){
+    if (this.platform.is('cordova')) {
       this.gplus.logout();
     }
 

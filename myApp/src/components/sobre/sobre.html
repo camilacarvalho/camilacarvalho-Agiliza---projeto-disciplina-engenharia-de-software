@@ -1,0 +1,36 @@
+<ion-content padding>
+  <ion-item-group>
+  <ion-item>
+      <button ion-button small clear *ngIf="editar==true" (click)="editar=false">EDITAR</button>
+      <br>
+      <img [src]="novo_projeto.img"><br>
+    <button ion-button small  *ngIf="editar==false" (click)="tirarFoto()" round outline icon-only><ion-icon name="ios-camera"></ion-icon></button>
+    <button ion-button small  *ngIf="editar==false" (click)="encontrarFoto()"round outline icon-only><ion-icon name="ios-image"></ion-icon></button>   
+  </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Nome do projeto: </ion-label>
+      <ion-input [(ngModel)]="novo_projeto.nome" type="text" [disabled]="editar" [value]="projeto.nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Descrição: </ion-label>
+      <ion-input [(ngModel)]="novo_projeto.descricao" type="text" [disabled]="editar" [value]="projeto.descricao"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Quantidade de Colaboradores: </ion-label>
+      <ion-input [(ngModel)]="novo_projeto.qnt_colaboradores" disabled type="number" [value]="projeto.qnt_colaboradores"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Previsão de término:</ion-label>
+      <ion-input [(ngModel)]="novo_projeto.previsao_finalizacao" [min] ="data_atual" type="date" [disabled]="editar" [value]="projeto.previsao_finalizacao"></ion-input>
+    </ion-item>
+
+  </ion-item-group>
+  <ion-item style="text-align: center">
+  <button *ngIf="editar==false" ion-button outline (click)="salvar()">SALVAR</button>
+  <button *ngIf="editar==false" ion-button outline (click)="cancelar()">CANCELAR</button>
+  </ion-item>
+</ion-content>

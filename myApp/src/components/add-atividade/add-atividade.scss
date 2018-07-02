@@ -1,0 +1,163 @@
+add-atividade {
+    .scroll-content{
+        padding-bottom: 0 !important;
+      }
+     
+      .item.item-block .item-inner {
+        border-bottom: 0px solid #dedede;
+    }
+    .text-input-wp {
+        border: 0px solid
+ 
+    }
+    .item ion-avatar ion-img, .item ion-avatar img {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+    }
+    .item ion-avatar {
+
+        min-width: 30px;
+        min-height: 30px;
+    
+    }
+
+    [padding] h1:first-child, [padding] h2:first-child, [padding] h3:first-child, [padding] h4:first-child, [padding] h5:first-child, [padding] h6:first-child {
+        margin-top: 0.3rem;
+    }
+
+    .item ion-avatar[item-left], .item ion-thumbnail[item-left], .item ion-avatar[item-start], .item ion-thumbnail[item-start] {
+        margin: 0px 0px 0px 0;
+    }
+    .item p {
+
+        margin: 0 0 2px;
+        font-size: 1.1rem;
+    }
+    .item h2 {
+        margin: 2px 1;
+        margin-top: 2px;
+        font-size: 1.3rem;
+    }
+
+#icon_menor{
+    font-size: 1.2em;
+    margin: 0px 6px 0px 0;
+}
+    a[disabled], button[disabled], [ion-button][disabled] {
+        opacity: 100;
+    }
+    ion-icon {
+        font-size: 1.3em;
+    }
+    .item .item-button {
+        padding: 0.6em 0.6em;
+        height: 14px;
+        font-size: 1.0rem;
+    }
+    .item { 
+        padding-left: 0px;
+    }
+    .toolbar-content{
+        display: flex;
+    }
+    .button-small{
+        height: 1.5em;
+        padding: 0 0.7em;
+    }
+    .label {
+        font-weight: bold;
+        margin: 0px 0px 0px 0;
+        color:color($colors, cor_azul1, base);
+    }
+    .item-block {
+        min-height: 2.4rem;
+    }
+    ion-icon {
+        font-size: 1.9em;
+    }
+    .item.item .checkbox {
+        margin: 0px 9px 0px 0px;
+    }
+    .text-input {
+        margin: 5px 5px;
+        font-size: 0.99em;
+        color: color($colors, cor_verde1, base);
+        
+    }
+    .item {
+        padding: 2px;
+    }
+    .item .item-button {
+        padding: 2;
+        height: 10px;
+        font-size: 1.0rem;
+    }
+
+    .scroll-content {
+        padding-bottom: 0px;
+    }
+    ::-moz-placeholder{
+        -webkit-text-fill-color:color($colors, cor_azul2, base);
+        opacity: 100;
+        font-size: 0.90em;
+    }
+    .button-clear {
+        color:color($colors, cor_azul1, base);
+        font-size: 0.95em;
+        font-weight: bold;
+    }
+    tbody{
+        overflow-y: scroll;
+        height: 10px;
+        }
+
+    .checkbox .checkbox-checked {
+        border-color:color($colors, cor_azul2, base);
+        background-color:color($colors, cor_azul2, base);
+    }
+    .checkbox .checkbox-checked .checkbox-inner {
+        left: 1px;
+        top: 1px;
+        width: 5px;
+        height: 5px;
+        border-width: 1px;
+        border-color: color($colors, cor_azul2, base);
+    }
+    .checkbox .checkbox-icon {
+        border-radius: 0.5px;
+        border-width: 0.5px;
+        width: 9px;
+        height: 9px;
+        border-color: color($colors, cor_azul2, base);
+    }
+    #fonte-checkbox{
+        font-weight: normal;
+        font-size: 1.0rem;
+        color:color($colors, cor_azul2, base);
+    }
+    .button-md:hover:not(.disable-hover) {
+        background-color: #fff
+        
+    }
+    ion-avatar, ion-thumbnail {
+        display: inline-block;
+    }
+      tbody{
+        display: block;
+        overflow-y: scroll;
+        height: 100px;
+        }
+        .button{
+            border-radius: 0px;
+            height: 3.6rem;
+            font-size: 1.4rem;
+            color:color($colors, cor_azul1, base);
+            background-color:#fff
+        }
+      .table {
+        border-collapse: collapse;
+        background-color: #fff;
+        width: 80%;
+      }
+}
