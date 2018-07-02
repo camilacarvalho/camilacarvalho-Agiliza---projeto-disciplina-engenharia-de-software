@@ -7,14 +7,6 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Platform } from 'ionic-angular';
 
 
-
-
-/*
-  Generated class for the FcmProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class FcmProvider {
 
