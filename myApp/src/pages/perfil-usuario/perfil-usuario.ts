@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { GoogleLoginComponent } from '../../components/google-login/google-login';
 
 @IonicPage()
 @Component({

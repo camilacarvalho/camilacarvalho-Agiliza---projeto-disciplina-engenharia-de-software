@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -6,23 +6,24 @@ import { Observable } from 'rxjs/Observable';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Platform, NavController } from 'ionic-angular';
+import { NotificacoesPage } from '../../pages/notificacoes/notificacoes';
+import { FcmProvider } from "../../providers/fcm/fcm";
 
-@Component({
-  selector: 'google-login',
-  templateUrl: 'google-login.html'
-})
-export class GoogleLoginComponent {
+
+@Injectable()
+export class GoogleLoginProvider {
 
   user: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
     private platform: Platform,
-    public navCtrl: NavController) {
+    public fcm: FcmProvider) {
 
     this.user = this.afAuth.authState;
 
   }
+
   getPhoto() {
     this.user.subscribe((auth) => {
       if (auth != null) {
@@ -30,11 +31,12 @@ export class GoogleLoginComponent {
       }
     })
   }
-  googleLogin() {
+
+  login() {
     if (this.platform.is('cordova')) {
-      this.nativeGoogleLogin();
+      this.nativeGoogleLogin().then(success => this.fcm.getToken());
     } else {
-      this.webGoogleLogin();
+      this.webGoogleLogin().then(success => this.fcm.getToken());
     }
   }
 
@@ -51,7 +53,7 @@ export class GoogleLoginComponent {
         firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
 
     } catch (err) {
-      console.log(err)
+      console.log("Native Google Plus Login Error code:" + err);
     }
 
   }
@@ -67,8 +69,9 @@ export class GoogleLoginComponent {
     }
   }
 
+
   signOut() {
- 
+
     this.afAuth.auth.signOut();
 
     if (this.platform.is('cordova')) {

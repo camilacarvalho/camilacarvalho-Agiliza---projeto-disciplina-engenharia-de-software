@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, Toast, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { WelcomePage } from '../pages/welcome/welcome';
+import { Subject } from 'rxjs/Subject';
+import { tap } from 'rxjs/operators';
 
 import { ConfigProvider } from '../providers/config/config';
+import { FcmProvider } from './../providers/fcm/fcm';
+import { GoogleLoginProvider } from './../providers/google-login/google-login';
+
+import { WelcomePage } from '../pages/welcome/welcome';
 import { HomePage } from '../pages/home/home';
 import { ProjetosPage } from '../pages/projetos/projetos';
 
@@ -13,35 +18,53 @@ import { ProjetosPage } from '../pages/projetos/projetos';
 @Component({
   templateUrl: 'app.html',
   providers: [
-    ConfigProvider
+    ConfigProvider,
+    GoogleLoginProvider
   ]
 })
 
-  export class MyApp {
-    rootPage: any;
+export class MyApp {
+  rootPage: any;
 
-    constructor(platform: Platform,
-      statusBar: StatusBar,
-      splashScreen: SplashScreen,
-      configProvider: ConfigProvider) {
+  constructor(platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    configProvider: ConfigProvider,
+    toastCtrl: ToastController,
+    fcm: FcmProvider,
+    googleLoginProvider: GoogleLoginProvider) {
 
-      platform.ready().then(() => {
+    platform.ready().then(() => {
+
+      //fcm.getToken();
+
+      fcm.listenToNotifications().pipe(
+        tap(msg => {
+          // show a toast
+          const toast = toastCtrl.create({
+            message: msg.body,
+            duration: 3000
+          });
+          toast.present();
+        })
+      ).subscribe();
 
       // Verifies the root page of the application.
-        let config = configProvider.getConfigData();
+      let config = configProvider.getConfigData();
 
-        if (config == null) {
-          this.rootPage = WelcomePage;
-          configProvider.setConfigData(false);
-        } else {
-          this.rootPage = HomePage;
-        }
+      if (config == null) {
+        this.rootPage = WelcomePage;
+        configProvider.setConfigData(false);
+      } else {
+        this.rootPage = HomePage;
+      }
 
-        console.log(config);
+      console.log(config);
 
-        statusBar.styleDefault();
-        splashScreen.hide();
-      });
-    }
+      statusBar.styleDefault();
+      splashScreen.hide();
 
+    });
+  }
 }
+
