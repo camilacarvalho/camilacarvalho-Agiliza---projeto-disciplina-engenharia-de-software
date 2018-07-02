@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-an
 import { AlertController, ToastController } from 'ionic-angular';
 import { PerfilProjetoPage } from '../perfil-projeto/perfil-projeto';
 import { SobreComponent } from '../../components/sobre/sobre';
+import { FcmProvider } from '../../providers/fcm/fcm';
 
 @IonicPage()
 @Component({
@@ -14,8 +15,12 @@ export class NotificacoesPage {
   private notificacoes = [];
 
 
-  constructor(public popoverCtrl: PopoverController, public toastCtrl: ToastController, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public fcm: FcmProvider, public popoverCtrl: PopoverController, public toastCtrl: ToastController, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
     this.preencherNotificacoes();
+    
+  }
+
+  ionViewDidLoad(){
   }
 
   getNotificacoes(ev: any) {

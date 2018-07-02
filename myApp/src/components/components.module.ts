@@ -4,6 +4,7 @@ import { ColaboradoresComponent } from './colaboradores/colaboradores';
 import { GraficosComponent } from './graficos/graficos';
 import { SobreComponent } from './sobre/sobre';
 import { AddAtividadeComponent } from './add-atividade/add-atividade';
+import { Firebase } from '@ionic-native/firebase';
 
 @NgModule({
 	declarations: [
@@ -18,6 +19,7 @@ import { AddAtividadeComponent } from './add-atividade/add-atividade';
     ColaboradoresComponent,
     GraficosComponent,
     SobreComponent,
-    AddAtividadeComponent]
+    AddAtividadeComponent],
+    providers: [Firebase]
 })
 export class ComponentsModule {}

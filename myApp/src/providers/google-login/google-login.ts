@@ -5,7 +5,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import { Platform } from 'ionic-angular';
+import { Platform, NavController } from 'ionic-angular';
+import { NotificacoesPage } from '../../pages/notificacoes/notificacoes';
+import { FcmProvider } from "../../providers/fcm/fcm";
 
 
 @Injectable()
@@ -15,7 +17,8 @@ export class GoogleLoginProvider {
 
   constructor(private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
-    private platform: Platform) {
+    private platform: Platform,
+    public fcm: FcmProvider) {
 
     this.user = this.afAuth.authState;
 
@@ -31,9 +34,9 @@ export class GoogleLoginProvider {
 
   login() {
     if (this.platform.is('cordova')) {
-      this.nativeGoogleLogin();
+      this.nativeGoogleLogin().then(success => this.fcm.getToken());
     } else {
-      this.webGoogleLogin();
+      this.webGoogleLogin().then(success => this.fcm.getToken());
     }
   }
 
@@ -50,7 +53,7 @@ export class GoogleLoginProvider {
         firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
 
     } catch (err) {
-      console.log(err)
+      console.log("Native Google Plus Login Error code:" + err);
     }
 
   }
@@ -65,6 +68,7 @@ export class GoogleLoginProvider {
       console.log(err)
     }
   }
+
 
   signOut() {
 

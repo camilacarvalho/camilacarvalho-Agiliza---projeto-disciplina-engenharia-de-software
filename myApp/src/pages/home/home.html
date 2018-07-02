@@ -30,6 +30,11 @@
             </button>
           </ion-list>
         </div>
+        <div *ngIf="user.uid">
+          <button ion-button block color="app-green" (tap)="signOut()">
+            Sign Out
+          </button>
+        </div>
       </div>
     </ion-card-content>
   </ion-card>
