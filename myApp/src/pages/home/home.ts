@@ -23,11 +23,13 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    if(this.user.subscribe( (auth) => {
-      return auth.uid;
-    })){
-      this.navCtrl.push(NotificacoesPage);
-    }
+    this.user.subscribe( (auth) => {
+      if (auth != null){
+        this.navCtrl.push(NotificacoesPage);
+
+      }
+    })
+    
   }
 
   googleLogin(){
