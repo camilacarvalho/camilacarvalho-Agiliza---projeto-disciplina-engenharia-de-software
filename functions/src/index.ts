@@ -42,10 +42,7 @@ export const buildUser = functions.auth.user().onCreate(snap => {
         email: snap.email
     }
     //O id do documento que representa o usuario sera dado pelo uid do usuario.
-    return admin.firestore().collection("users").doc(snap.uid).set(user);
-
-    
-
+    return admin.firestore().collection("users").doc(snap.uid).create(user);
 
 });    
 
