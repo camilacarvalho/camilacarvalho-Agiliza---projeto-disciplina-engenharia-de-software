@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -9,11 +9,9 @@ import { Platform, NavController } from 'ionic-angular';
 import { NotificacoesPage } from '../../pages/notificacoes/notificacoes';
 import { FcmProvider } from "../../providers/fcm/fcm";
 
-@Component({
-  selector: 'google-login',
-  templateUrl: 'google-login.html'
-})
-export class GoogleLoginComponent {
+
+@Injectable()
+export class GoogleLoginProvider {
 
   user: Observable<firebase.User>;
 
@@ -26,6 +24,7 @@ export class GoogleLoginComponent {
     this.user = this.afAuth.authState;
 
   }
+
   getPhoto() {
     this.user.subscribe((auth) => {
       if (auth != null) {
@@ -33,7 +32,8 @@ export class GoogleLoginComponent {
       }
     })
   }
-  googleLogin() {
+
+  login() {
     if (this.platform.is('cordova')) {
       this.nativeGoogleLogin().then(success => this.fcm.getToken());
     } else {
@@ -75,7 +75,7 @@ export class GoogleLoginComponent {
   }
 
   signOut() {
- 
+
     this.afAuth.auth.signOut();
 
     if (this.platform.is('cordova')) {

@@ -1,37 +1,38 @@
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
-
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { LoginPage } from './../pages/login/login';
-
-
-import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { Firebase } from '@ionic-native/firebase';
-
-
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from  'angularfire2/auth';
 
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 import { GooglePlus } from '@ionic-native/google-plus';
-import { GoogleLoginComponent } from './../components/google-login/google-login';
-import { PerfilProjetoPage } from '../pages/perfil-projeto/perfil-projeto';
+import { Camera } from '@ionic-native/camera';
+import { Firebase } from '@ionic-native/firebase';
+
+import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { TarefasComponent } from '../components/tarefas/tarefas';
 import { GraficosComponent } from '../components/graficos/graficos';
 import { SobreComponent } from '../components/sobre/sobre';
 import { ColaboradoresComponent } from '../components/colaboradores/colaboradores';
-import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
-import { Camera } from '@ionic-native/camera';
-import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
+
+import { ConfigProvider } from '../providers/config/config';
 import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
 import { FcmProvider } from '../providers/fcm/fcm';
+import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
+import { GoogleLoginProvider } from '../providers/google-login/google-login';
+
+import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
+import { PerfilProjetoPage } from '../pages/perfil-projeto/perfil-projeto';
+import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
+import { WelcomePage } from '../pages/welcome/welcome';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxIg5B8z2F531HyxDiKSprhF-P4ueDi7Y",
@@ -45,17 +46,19 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    GoogleLoginComponent,
-    LoginPage,
-    HomePage,
-    AddAtividadeComponent,
-    PerfilProjetoPage,
-    NotificacoesPage,
+    ColaboradoresComponent,
     TarefasComponent,
     GraficosComponent,
     SobreComponent,
-    ColaboradoresComponent,
-    PerfilUsuarioPage  ],
+    AddAtividadeComponent,
+    TarefasComponent,
+    ColaboradoresComponent, 
+    HomePage,
+    WelcomePage,
+    PerfilProjetoPage,
+    PerfilUsuarioPage,
+    NotificacoesPage,
+  ],
   imports: [
     BrowserModule,
     CommonModule,
@@ -63,23 +66,25 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    GoogleLoginComponent,
-    LoginPage,
+    ColaboradoresComponent,
+    GraficosComponent,
+    SobreComponent,
+    AddAtividadeComponent,
     PerfilProjetoPage,
     NotificacoesPage,
     TarefasComponent,
+    HomePage,
+    WelcomePage,
     PerfilProjetoPage,
-    GraficosComponent,
-    SobreComponent,
-    ColaboradoresComponent,
-    PerfilUsuarioPage,
-    AddAtividadeComponent
+    PerfilProjetoPage,
+    PerfilUsuarioPage
   ],
   providers: [
     GooglePlus,
@@ -88,7 +93,9 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
     FcmProvider,
-    Firebase
+    Firebase,
+    ConfigProvider,
+    GoogleLoginProvider
   ]
 })
 export class AppModule {}

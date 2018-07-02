@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { GoogleLoginComponent } from '../../components/google-login/google-login';
 
 @IonicPage()
 @Component({
@@ -17,7 +16,9 @@ export class PerfilUsuarioPage {
      private camera: Camera,
       public navCtrl: NavController,
        public navParams: NavParams,
-        public toastCtrl: ToastController) {         
+        public toastCtrl: ToastController) {
+          
+         // console.log(firebase.storage().ref(Coisa1).getDownloadURL();)
 
     this.usuario = {
       nome: "Camila Carvalho da Silva",
