@@ -18,7 +18,6 @@ export class GoogleLoginProvider {
   constructor(private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
     private platform: Platform,
-    public navCtrl: NavController,
     public fcm: FcmProvider) {
 
     this.user = this.afAuth.authState;
@@ -70,9 +69,6 @@ export class GoogleLoginProvider {
     }
   }
 
-  gotoNotf(){
-    this.navCtrl.push(NotificacoesPage);
-  }
 
   signOut() {
 
