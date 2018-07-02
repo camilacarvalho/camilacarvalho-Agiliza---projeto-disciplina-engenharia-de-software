@@ -10,17 +10,18 @@ import { ProjetosPage } from '../pages/projetos/projetos';
 import { ColaborandoPage } from '../pages/colaborando/colaborando';
 import { GerenciandoPage } from '../pages/gerenciando/gerenciando';
 import { ProjetoPage } from '../pages/projeto/projeto';
-
-
+import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
+import { SettingsPage } from '../pages/settings/settings';
+import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
 
 
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from  'angularfire2/auth';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 import { GoogleLoginComponent } from './../components/google-login/google-login';
@@ -29,11 +30,9 @@ import { GraficosComponent } from '../components/graficos/graficos';
 import { SobreComponent } from '../components/sobre/sobre';
 import { ColaboradoresComponent } from '../components/colaboradores/colaboradores';
 import { Camera } from '@ionic-native/camera';
-import { IonicStorageModule } from '@ionic/storage';
+import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
 
 import { ConfigProvider } from '../providers/config/config';
-import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
-import { AddAtividadeComponent } from '../components/add-atividade/add-atividade';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCxIg5B8z2F531HyxDiKSprhF-P4ueDi7Y",
@@ -56,8 +55,7 @@ export const firebaseConfig = {
     TarefasComponent,
     ColaboradoresComponent,
     HomePage,
-    WelcomePage,
-    NotificacoesPage
+    WelcomePage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +76,6 @@ export const firebaseConfig = {
     GraficosComponent,
     SobreComponent,
     AddAtividadeComponent,
-    NotificacoesPage,
     TarefasComponent,
     HomePage,
     WelcomePage

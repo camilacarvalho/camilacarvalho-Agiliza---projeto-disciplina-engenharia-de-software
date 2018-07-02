@@ -42,4 +42,8 @@ export class GerenciandoPage {
   buttonProjetoClick() {
     this.navCtrl.push('ProjetoPage');
   }
+
+  loadSettingsPage() {
+    this.navCtrl.push('SettingsPage');
+  }
 }

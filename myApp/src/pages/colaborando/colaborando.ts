@@ -15,11 +15,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ColaborandoPage {
 
+  projetosSendoColaboradorObject : Object = [
+    {
+      nome: "Mememaker",
+      descricao: "Uma fábrica de memes",
+      dataInicio: "15/06/2018",
+      dataTermino: "01/07/2018"
+    }
+  ];
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ColaborandoPage');
+  }
+
+  loadSettingsPage() {
+    this.navCtrl.push('SettingsPage');
   }
 
 }
