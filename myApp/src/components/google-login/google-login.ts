@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Platform, NavController } from 'ionic-angular';
 import { NotificacoesPage } from '../../pages/notificacoes/notificacoes';
+import { FcmProvider } from "../../providers/fcm/fcm";
 
 @Component({
   selector: 'google-login',
@@ -19,7 +20,8 @@ export class GoogleLoginComponent {
   constructor(private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
     private platform: Platform,
-    public navCtrl: NavController) {
+    public navCtrl: NavController,
+    public fcm: FcmProvider) {
 
     this.user = this.afAuth.authState;
 
@@ -33,9 +35,9 @@ export class GoogleLoginComponent {
   }
   googleLogin() {
     if (this.platform.is('cordova')) {
-      this.nativeGoogleLogin();
+      this.nativeGoogleLogin().then(success => this.fcm.getToken());
     } else {
-      this.webGoogleLogin();
+      this.webGoogleLogin().then(success => this.fcm.getToken());
     }
   }
 

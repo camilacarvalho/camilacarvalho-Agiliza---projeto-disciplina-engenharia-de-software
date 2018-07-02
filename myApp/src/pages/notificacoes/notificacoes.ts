@@ -21,7 +21,6 @@ export class NotificacoesPage {
   }
 
   ionViewDidLoad(){
-     this.fcm.getToken();
   }
 
   getNotificacoes(ev: any) {

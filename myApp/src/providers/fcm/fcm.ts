@@ -53,8 +53,7 @@ export class FcmProvider {
     const devicesRef = this.afs.collection('devices');
     const docData = {
       token,
-      userId: userUid,
-      test: "hello there"
+      userId: userUid
     };
     return devicesRef.doc(token).set(docData);
   }
