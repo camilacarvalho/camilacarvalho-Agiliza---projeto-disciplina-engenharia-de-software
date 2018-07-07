@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import firebase from 'firebase/app';
-import { NotificacoesPage } from '../notificacoes/notificacoes';
+import { ColaborandoPage } from '../colaborando/colaborando';
 
 @Component({
   selector: 'page-home',
@@ -25,7 +25,7 @@ export class HomePage {
   ionViewDidLoad(){
     this.user.subscribe( (auth) => {
       if (auth != null){
-        this.navCtrl.push(NotificacoesPage);
+        this.navCtrl.push(ColaborandoPage);
 
       }
     })

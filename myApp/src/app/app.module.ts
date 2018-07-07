@@ -29,13 +29,15 @@ import { GoogleLoginProvider } from '../providers/google-login/google-login';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { WelcomePage } from '../pages/welcome/welcome';
-import { ProjetosPage } from '../pages/projetos/projetos';
-import { ColaborandoPage } from '../pages/colaborando/colaborando';
-import { GerenciandoPage } from '../pages/gerenciando/gerenciando';
-import { ProjetoPage } from '../pages/projeto/projeto';
-import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
-import { SettingsPage } from '../pages/settings/settings';
-import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
+
+import { SettingsPageModule } from './../pages/settings/settings.module';
+import { ProjetosPageModule } from './../pages/projetos/projetos.module';
+import { ProjetoPageModule } from './../pages/projeto/projeto.module';
+import { PerfilUsuarioPageModule } from './../pages/perfil-usuario/perfil-usuario.module';
+import { NovoProjetoPageModule } from './../pages/novo-projeto/novo-projeto.module';
+import { NotificacoesPageModule } from './../pages/notificacoes/notificacoes.module';
+import { GerenciandoPageModule } from './../pages/gerenciando/gerenciando.module';
+import { ColaborandoPageModule } from './../pages/colaborando/colaborando.module';
 
 
 export const firebaseConfig = {
@@ -60,6 +62,7 @@ export const firebaseConfig = {
     ColaboradoresComponent,
     HomePage,
     WelcomePage
+ 
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,15 @@ export const firebaseConfig = {
     AngularFirestoreModule,
     AngularFireAuthModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    ColaborandoPageModule,
+    GerenciandoPageModule,
+    NotificacoesPageModule,
+    NovoProjetoPageModule,
+    PerfilUsuarioPageModule,
+    ProjetoPageModule,
+    ProjetosPageModule,
+    SettingsPageModule
 
   ],
   bootstrap: [IonicApp],
