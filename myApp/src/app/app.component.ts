@@ -36,19 +36,18 @@ export class MyApp {
 
     platform.ready().then(() => {
 
-      //fcm.getToken();
-
-      fcm.listenToNotifications().pipe(
-        tap(msg => {
-          // show a toast
-          const toast = toastCtrl.create({
-            message: msg.body,
-            duration: 3000
-          });
-          toast.present();
-        })
-      ).subscribe();
-
+      if(platform.is('cordova')){
+        fcm.listenToNotifications().pipe(
+          tap(msg => {
+           // show a toast
+            const toast = toastCtrl.create({
+              message: msg.body,
+              duration: 3000
+            });
+            toast.present();
+          })
+        ).subscribe();
+     }
       // Verifies the root page of the application.
       let config = configProvider.getConfigData();
 
