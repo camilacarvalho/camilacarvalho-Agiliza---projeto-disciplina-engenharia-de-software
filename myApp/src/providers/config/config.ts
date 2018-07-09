@@ -18,11 +18,7 @@ export class ConfigProvider {
   // Writes the storage data.
   setConfigData(show_slide?: boolean) {
     let config_show_slide: boolean;
-
-    if (show_slide) {
-      config_show_slide = show_slide;
-    }
-
+    config_show_slide = show_slide; // Don't show the welcome slides.
     localStorage.setItem(config_key_name, JSON.stringify(config_show_slide));
   }
 

@@ -1,7 +1,19 @@
 page-welcome {
-    
-    .slide_image img {
-        width: 240px;
-    }
-    
+
+  @import url('https://fonts.googleapis.com/css?family=Poppins');
+  
+  .slide_image img {
+      width: 240px;
+  }
+
+  .background {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(160deg, rgb(15, 53, 78) 35%, #97C0B7);
+  }
+
+  h2, p {
+      color: #ffffff;
+      font-family: 'Poppins';
+  }
 }

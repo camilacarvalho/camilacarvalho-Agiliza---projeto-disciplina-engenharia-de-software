@@ -36,37 +36,37 @@ export class MyApp {
     fcm: FcmProvider,
     googleLoginProvider: GoogleLoginProvider) {
 
-   /* platform.ready().then(() => {
+    platform.ready().then(() => {
 
-      //fcm.getToken();
-
-      fcm.listenToNotifications().pipe(
-        tap(msg => {
-          // show a toast
-          const toast = toastCtrl.create({
-            message: msg.body,
-            duration: 3000
-          });
-          toast.present();
-        })
-      ).subscribe();
-*/
+      if(platform.is('cordova')){
+        fcm.listenToNotifications().pipe(
+          tap(msg => {
+           // show a toast
+            const toast = toastCtrl.create({
+              message: msg.body,
+              duration: 3000
+            });
+            toast.present();
+          })
+        ).subscribe();
+     }
+    
       // Verifies the root page of the application.
       let config = configProvider.getConfigData();
 
-     // if (config == null) {
+      if (config == null) {
         this.rootPage = ProjetoPage;
-      /*  configProvider.setConfigData(false);
+        configProvider.setConfigData(false);
       } else {
         this.rootPage = HomePage;
-      }*/
+      }
 
      // console.log(config);
 
       statusBar.styleDefault();
       splashScreen.hide();
 
-   // });
+    });
   }
 }
 
