@@ -13,6 +13,8 @@ import { GoogleLoginProvider } from './../providers/google-login/google-login';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { HomePage } from '../pages/home/home';
 import { ProjetosPage } from '../pages/projetos/projetos';
+import { PerfilUsuarioPage } from '../pages/perfil-usuario/perfil-usuario';
+import { ProjetoPage } from '../pages/projeto/projeto';
 
 
 @Component({
@@ -48,17 +50,18 @@ export class MyApp {
           })
         ).subscribe();
      }
+    
       // Verifies the root page of the application.
       let config = configProvider.getConfigData();
 
       if (config == null) {
-        this.rootPage = WelcomePage;
+        this.rootPage = ProjetoPage;
         configProvider.setConfigData(false);
       } else {
         this.rootPage = HomePage;
       }
 
-      console.log(config);
+     // console.log(config);
 
       statusBar.styleDefault();
       splashScreen.hide();
