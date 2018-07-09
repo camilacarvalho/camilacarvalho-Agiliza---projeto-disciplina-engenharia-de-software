@@ -29,7 +29,7 @@ export class ProjetoPage {
     this.tab3 = GraficosComponent;
     this.tab4 = SobreComponent;
 
-    this.projeto={nome:"Sarrafo"};
+    this.projeto={nome:"Agiliza!"};
   }
 
 
