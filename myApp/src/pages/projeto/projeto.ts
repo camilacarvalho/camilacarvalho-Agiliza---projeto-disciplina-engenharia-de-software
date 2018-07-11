@@ -5,13 +5,6 @@ import { ColaboradoresComponent } from '../../components/colaboradores/colaborad
 import { GraficosComponent } from '../../components/graficos/graficos';
 import { SobreComponent } from '../../components/sobre/sobre';
 
-/**
- * Generated class for the PerfilProjetoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-projeto',

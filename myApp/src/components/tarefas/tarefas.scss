@@ -1,29 +1,29 @@
 tarefas {
-    thead, tbody{
-        display: block;  
-      }
+  
+  thead, tbody{
+    display: block;  
+  }
       
-      tbody{
-        overflow-y: scroll;
-        height: 100px;
-        }
+  tbody {
+    overflow-y: scroll;
+    height: 100px;
+  }
       
-      body {
-        font-size: 12px;
-        font-family: arial;
-      }
+  body {
+    font-size: 12px;
+    font-family: arial;
+  }
       
-      
-      .table {
-        border-collapse: collapse;
-        background-color: #fff;
-        width: 100%;
-      }
+  .table {
+    border-collapse: collapse;
+    background-color: #fff;
+    width: 100%;
+  }
 
-      .table thead {
-        background-color: #333;
-        color: #fff;
-        height: 40px;
-      }
+  .table thead {
+    background-color: #333;
+    color: #fff;
+    height: 40px;
+  }
 
 }

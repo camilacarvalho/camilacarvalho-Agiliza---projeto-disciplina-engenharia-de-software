@@ -8,10 +8,9 @@ import { AddAtividadeComponent } from '../add-atividade/add-atividade';
 })
 export class TarefasComponent {
 
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController) {}
   
-  }
-addAtividade(myEvent){
+  addAtividade(myEvent) {
     let popover = this.popoverCtrl.create(AddAtividadeComponent);
     popover.present({
       ev: myEvent

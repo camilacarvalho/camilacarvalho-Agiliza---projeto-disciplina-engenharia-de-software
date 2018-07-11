@@ -7,7 +7,6 @@ import { ToastController, AlertController } from 'ionic-angular';
 })
 export class AddAtividadeComponent {
 
-
   private atividade: any;
   private data_atual;
   private busca_colaborador: string = "";
@@ -20,20 +19,18 @@ export class AddAtividadeComponent {
     this.atividade = { nome: "", prazo: "", agenda: false, colaboradores_atv: [] }
   }
 
-  removerColaborador(colaborador){
+  removerColaborador(colaborador) {
     const prompt = this.alertCtrl.create({
-      subTitle: "Deseja remover "+colaborador.nome+" desta atividade?",
+      subTitle: "Deseja remover " + colaborador.nome + " desta atividade?",
       buttons: [
         { text: 'Não', },
         {
           text: 'Sim', handler: data => {
-              const index = this.atividade.colaboradores_atv.indexOf(colaborador);
-              console.log(index);
-              this.atividade.colaboradores_atv.splice(index, 1);
-              console.log(this.atividade.colaboradores_atv);
-              this.informacao("Colaborador removido da atividade!");
-            
-            
+            const index = this.atividade.colaboradores_atv.indexOf(colaborador);
+            console.log(index);
+            this.atividade.colaboradores_atv.splice(index, 1);
+            console.log(this.atividade.colaboradores_atv);
+            this.informacao("Colaborador removido da atividade!");
           }
         }
       ]
@@ -77,9 +74,9 @@ export class AddAtividadeComponent {
     let col = this.getColaborador(this.busca_colaborador);
     if (col != null && this.colaboradorNaoAdicionado(col)) {
       this.atividade.colaboradores_atv.push(col);
-    } else if(this.busca_colaborador.trim()==""){
+    } else if (this.busca_colaborador.trim() == "") {
       this.informacao("Preencha o campo com o nome do colaborador!");
-    }else if(col == null){
+    } else if (col == null) {
       this.informacao(this.busca_colaborador + " não faz parte do seu projeto.");
     }
 

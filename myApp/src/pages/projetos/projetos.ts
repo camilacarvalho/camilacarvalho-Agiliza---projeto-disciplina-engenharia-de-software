@@ -11,7 +11,6 @@ export class ProjetosPage {
   gerenciandoRoot = 'GerenciandoPage'
   colaborandoRoot = 'ColaborandoPage'
 
-
   constructor(public navCtrl: NavController) {}
 
 }

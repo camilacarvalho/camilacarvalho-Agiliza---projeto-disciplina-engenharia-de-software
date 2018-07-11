@@ -11,28 +11,26 @@ export class SobreComponent {
   private projeto: any;
   private novo_projeto: any;
   private editar: boolean;
-  private data_atual; 
+  private data_atual;
 
-  constructor(private camera: Camera,
-     public toastCtrl: ToastController) {
-
+  constructor(private camera: Camera, public toastCtrl: ToastController) {
     this.projeto = { nome: "Sarrafo", img: "assets/imgs/img_padrao_projeto.png", descricao: "Nosso sarrafo é o melhor!", qnt_colaboradores: 9, previsao_finalizacao: "2018-06-08" };
     this.novo_projeto = { nome: this.projeto.nome, img: this.projeto.img, descricao: this.projeto.descricao, qnt_colaboradores: this.projeto.qnt_colaboradores, previsao_finalizacao: this.projeto.previsao_finalizacao };
     this.editar = true;
   }
 
-  encontrarFoto(){
+  encontrarFoto() {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY  
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
     }
     this.camera.getPicture(options).then((imageData) => {
       this.novo_projeto.img = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
     });
-   }
+  }
 
   tirarFoto() {
     const options: CameraOptions = {
@@ -92,18 +90,16 @@ export class SobreComponent {
     }
   }
 
-  ionViewDidEnter() {
-    this.getDataAtual();
-  }
-
-
-
   camposValidos() {
     if ((this.novo_projeto.nome.trim() == "") || (this.novo_projeto.descricao.trim() == "") || (this.novo_projeto.previsao_finalizacao.trim() == "")) {
       this.presentToast("Preencha todos os campos!");
       return false;
     }
     return true;
+  }
+
+  ionViewDidEnter() {
+    this.getDataAtual();
   }
 
 }

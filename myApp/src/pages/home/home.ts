@@ -14,29 +14,26 @@ export class HomePage {
 
   user: Observable<firebase.User>;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     private asf: AngularFirestore,
     private googleLoginProvider: GoogleLoginProvider) {
 
     this.user = this.googleLoginProvider.user;
-
   }
 
-  ionViewDidLoad(){
-    this.user.subscribe( (auth) => {
-      if (auth != null){
+  ionViewDidLoad() {
+    this.user.subscribe((auth) => {
+      if (auth != null) {
         this.navCtrl.push(ColaborandoPage);
-
       }
     })
-    
   }
 
-  googleLogin(){
+  googleLogin() {
     this.googleLoginProvider.login();
   }
 
-  signOut(){
+  signOut() {
     this.googleLoginProvider.signOut();
   }
 
