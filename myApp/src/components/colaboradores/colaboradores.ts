@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import {AngularFirestore} from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import {AngularFireAuth} from 'angularfire2/auth';
-import { UrlSerializer } from 'ionic-angular/umd';
-import { makePropDecorator } from '@angular/core/src/util/decorators';
+
 
 /**
  * Generated class for the ColaboradoresComponent component.
@@ -16,7 +15,7 @@ import { makePropDecorator } from '@angular/core/src/util/decorators';
 })
 export class ColaboradoresComponent {
 
-
+  
 
   constructor(public afs: AngularFirestore, private afAuth: AngularFireAuth) {
 
@@ -24,30 +23,37 @@ export class ColaboradoresComponent {
 
   
    ngOnInit(){
-     this.sendCollaborationRequest('pedro.braga@ccc.ufcg.edu.br', 'nomeDoProjeto', 'idDoProjeto');
+     
   }
 
   
 
     
 
-  //Envia notificacao de colaboracao para um usuario do sistema
-  public sendCollaborationRequest(userEmail, projectName, projectId){
-    var userRequestedId = 'idDoUsuarioAReceberNotification'
-    const notificationsRef = this.afs.firestore.collection('notifications');
+  public async sendCollaborationRequest(userEmail, projectId){
+    var userRequestedId;
+    var projectName
+    const notificationsRef = this.afs.collection('notifications')
     const usersRef = this.afs.firestore.collection('users');
+    const projectsRef = this.afs.firestore.collection('projects');
 
     
-    //Codigo que busca usuario para atribuir o id a notification
-    usersRef.where('email', '==', userEmail).get()
+    await projectsRef.doc(projectId).get()
+    .then(snap => projectName = snap.data().projectName)
+    .catch(err => console.log('Error while finding project name!'))
+
+
+
+    //Busca usuario para atribuir o id a notification
+     await usersRef.where('email', '==', userEmail).get()
     .then(snap => userRequestedId = snap.docs[0].id)
-    .catch(err => userRequestedId = 'idDoDocumento'); 
-    
+    .catch(err => console.log('Error while finding userRequestedId!')); 
+
     const notification = {
       message: 'Você foi convidado para participar do projeto ' + projectName,
       projectId,
-      seen: 'true',
-      type: 'novoprojeto',
+      seen: false,
+      type: 'convitecolaborador',
       userId: userRequestedId
     };
 
