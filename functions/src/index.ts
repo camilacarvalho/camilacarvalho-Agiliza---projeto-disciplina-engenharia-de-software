@@ -108,5 +108,22 @@ export const sendNotification = functions.firestore.document('notifications/{not
         });
     });
 
+export const criateTaskNotification = functions.firestore.document('tasks/{tasksId}').onCreate(snap => {
+
+    const task = snap.data();
+  
+    const notificationTask = {
+        notification:{
+            message: "Nova tarefa recebida: " + task.description,
+            projectId: task.projectId,
+            seen: false,
+            type: "Task notification",
+            userId: task.taskKeeper
+        }
+    }
+ 
+    return admin.firestore().collection('notifications').add(notificationTask);
+});
+
 // This will crop square 300x300 px image from the center of the original:
 // return spawn('convert', [tempFilePath, '-gravity', 'center', '-crop', `300x300+0+0`, tempFilePath], { capture: ['stdout', 'stderr'] })﻿

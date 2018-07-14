@@ -1,12 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
@@ -45,10 +37,10 @@ exports.buildUser = functions.auth.user().onCreate(snap => {
         email: snap.email
     };
     //O id do documento que representa o usuario sera dado pelo uid do usuario.
-    return admin.firestore().collection("users").doc(snap.uid).set(user);
+    return admin.firestore().collection("users").doc(snap.uid).create(user);
 });
 exports.sendNotification = functions.firestore.document('notifications/{notificationId}')
-    .onCreate((snap) => __awaiter(this, void 0, void 0, function* () {
+    .onCreate(snap => {
     const notification = snap.data();
     const payload = {
         notification: {
@@ -56,16 +48,19 @@ exports.sendNotification = functions.firestore.document('notifications/{notifica
             body: notification.message
         }
     };
-    const devicesToNotify = [];
-    const userId = snap.data().userId;
-    const devicesRef = admin.firestore().collection('devices')
-        .where('userId', '==', notification.userId);
-    const devices = yield devicesRef.get();
-    devices.forEach(device => {
-        devicesToNotify.push(device.data().token);
+    return admin.firestore().collection('devices')
+        .where('userId', '==', notification.userId).get().then(devices => {
+        const devicesToNotify = [];
+        devices.forEach(device => {
+            devicesToNotify.push(device.data().token);
+        });
+        return devicesToNotify;
+    }).then(devicesToNotify => {
+        return admin.messaging().sendToDevice(devicesToNotify, payload);
+    }).catch(error => {
+        console.log(error);
     });
-    return admin.messaging().sendToDevice(devicesToNotify, payload);
-}));
+});
 //Storage function: Resize thumbnails
 exports.onFileChange = functions.storage.object().onFinalize(event => {
     const bucket = event.bucket;
@@ -92,6 +87,19 @@ exports.onFileChange = functions.storage.object().onFinalize(event => {
         return destBucket.upload(tmpFilePath, { destination: 'resized-' +
                 path.basename(filepath), metadata: metadata });
     });
+});
+exports.criateTaskNotification = functions.firestore.document('tasks/{tasksId}').onCreate(snap => {
+    const task = snap.data();
+    const notificationTask = {
+        notification: {
+            message: "Nova tarefa recebida: " + task.description,
+            projectId: task.projectId,
+            seen: false,
+            type: "Task notification",
+            userId: task.taskKeeper
+        }
+    };
+    return admin.firestore().collection('notifications').add(notificationTask);
 });
 // This will crop square 300x300 px image from the center of the original:
 // return spawn('convert', [tempFilePath, '-gravity', 'center', '-crop', `300x300+0+0`, tempFilePath], { capture: ['stdout', 'stderr'] })﻿
