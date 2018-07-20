@@ -11,9 +11,11 @@ import { Platform } from 'ionic-angular';
 export class FcmProvider {
 
   constructor(private afAuth: AngularFireAuth,public firebaseNative: Firebase,
-  public afs: AngularFirestore, public platform: Platform) {}
+  public afs: AngularFirestore, public platform: Platform) {
 
-
+    const firestoreSettings = {timestampsInSnapshots : true};  
+    this.afs.firestore.settings(firestoreSettings);
+  }
 
   async getToken(){
     let token;

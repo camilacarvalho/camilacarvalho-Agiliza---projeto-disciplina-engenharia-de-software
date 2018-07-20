@@ -15,9 +15,11 @@ export class HomePage {
   user: Observable<firebase.User>;
 
   constructor(public navCtrl: NavController,
-    private asf: AngularFirestore,
+    private afs: AngularFirestore,
     private googleLoginProvider: GoogleLoginProvider) {
-
+    
+    const firestoreSettings = {timestampsInSnapshots : true};  
+    this.afs.firestore.settings(firestoreSettings);
     this.user = this.googleLoginProvider.user;
   }
 
