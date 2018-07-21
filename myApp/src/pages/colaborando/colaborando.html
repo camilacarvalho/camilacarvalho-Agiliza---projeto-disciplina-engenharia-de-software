@@ -40,11 +40,11 @@
 <ion-content padding>
   <ion-row>
     <ion-card *ngFor="let project of projects | async">
-      <button ion-item (click)="buttonProjetoClick()">
-        <img [src]="getThumbnail(project.thumbnail)" width="50" height="60" alt="{{project.projectName}}">
+      <button ion-item (click)="pushProjectPage(project.id)">
+        <!-- <img [src]="" width="50" height="60" > -->
         <h1> {{project.projectName}} </h1>
         <!-- <h3> {{projeto.dataInicio}} - {{projeto.dataTermino}} </h3> -->
-        <h2> {{project.description}} </h2>
+        <h3> {{project.description}} </h3>
       </button>
     </ion-card>
   </ion-row>

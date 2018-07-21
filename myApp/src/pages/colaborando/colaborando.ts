@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireDatabase } from 'angularfire2/database';
+
 
 
 @IonicPage()
@@ -22,7 +24,8 @@ export class ColaborandoPage {
     public navParams: NavParams,
     private afs: AngularFirestore,
     private afAuth: AngularFireAuth,
-    private afStorage: AngularFireStorage) {
+    private afStorage: AngularFireStorage,
+    private db: AngularFireDatabase) {
 
       const firestoreSettings = {timestampsInSnapshots : true};  
       this.afs.firestore.settings(firestoreSettings);
@@ -39,14 +42,16 @@ export class ColaborandoPage {
     return projects;
   }
 
-  getThumbnail(filePath){
-    //console.log("Heyo");
-    var url = "";
-    this.afStorage.storage.refFromURL(filePath).getDownloadURL()
-    .then((fileUrl) => {console.log("Url:"+fileUrl); url = fileUrl;})
-    .catch(error => console.log('error', error));
+  // getThumbnail(filePath){
+    
+  //   // return firebase.storage().ref().child(filePath).getDownloadURL().then( urlPic=>{
+  //   //   console.log(urlPic);
+  //   //   return urlPic;
+  //   // })
+  // }
 
-    return url;
+  pushProjectPage(projectId){
+    this.navCtrl.push('ProjetoPage');
   }
 
   loadSettingsPage() {

@@ -3,6 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from  'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -71,6 +73,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     ColaborandoPageModule,
