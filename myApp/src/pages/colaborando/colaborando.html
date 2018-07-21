@@ -39,14 +39,14 @@
 
 <ion-content padding>
   <ion-row>
-    <ion-col *ngFor="let projeto of projetosSendoColaboradorObject">
+    <ion-card *ngFor="let project of projects | async">
       <button ion-item (click)="buttonProjetoClick()">
-        <img src="/../../resources/icon.png" alt="">
-        <h1> {{projeto.nome}} </h1>
-        <h3> {{projeto.dataInicio}} - {{projeto.dataTermino}} </h3>
-        <h2> {{projeto.descricao}} </h2>
+        <img [src]="getThumbnail(project.thumbnail)" width="50" height="60" alt="{{project.projectName}}">
+        <h1> {{project.projectName}} </h1>
+        <!-- <h3> {{projeto.dataInicio}} - {{projeto.dataTermino}} </h3> -->
+        <h2> {{project.description}} </h2>
       </button>
-    </ion-col>
+    </ion-card>
   </ion-row>
 
 </ion-content>

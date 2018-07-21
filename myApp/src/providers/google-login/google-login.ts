@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Platform, NavController } from 'ionic-angular';
-import { NotificacoesPage } from '../../pages/notificacoes/notificacoes';
 import { FcmProvider } from "../../providers/fcm/fcm";
 
 
@@ -21,7 +20,6 @@ export class GoogleLoginProvider {
     public fcm: FcmProvider) {
 
     this.user = this.afAuth.authState;
-
   }
 
   getPhoto() {
