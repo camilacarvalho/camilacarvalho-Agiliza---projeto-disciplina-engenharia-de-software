@@ -17,6 +17,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Camera } from '@ionic-native/camera';
 import { Firebase } from '@ionic-native/firebase';
+import { DatePicker } from '@ionic-native/date-picker';
 
 import { TarefasComponent } from '../components/tarefas/tarefas';
 import { GraficosComponent } from '../components/graficos/graficos';
@@ -101,6 +102,7 @@ export const firebaseConfig = {
   providers: [
     GooglePlus,
     StatusBar,
+    DatePicker,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
