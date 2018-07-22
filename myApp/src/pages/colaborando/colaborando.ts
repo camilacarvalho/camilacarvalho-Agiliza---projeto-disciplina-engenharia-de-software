@@ -7,6 +7,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { map } from 'rxjs/operators';
 
 
 
@@ -36,10 +37,16 @@ export class ColaborandoPage {
 
   getProjects(){
 
-    const projects = this.afs.collection('projects',
-    ref => ref.where("collaborators."+this.userUid, '==', true)).valueChanges();
-    
-    return projects;
+    return this.afs.collection('projects',
+    ref => ref.where("collaborators."+this.userUid, '==', true)).snapshotChanges().pipe(
+      map(actions => {
+       return actions.map(a =>{
+         let data = a.payload.doc.data();
+         let id = a.payload.doc.id;
+         let obj = {id, ...data};
+         return(obj);
+       })
+     }));;
   }
 
   // getThumbnail(filePath){
@@ -51,6 +58,7 @@ export class ColaborandoPage {
   // }
 
   pushProjectPage(projectId){
+    console.log(projectId);
     this.navCtrl.push('ProjetoPage');
   }
 
