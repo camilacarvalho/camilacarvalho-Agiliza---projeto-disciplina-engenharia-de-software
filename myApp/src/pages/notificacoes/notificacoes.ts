@@ -4,6 +4,11 @@ import { AlertController, ToastController } from 'ionic-angular';
 import { ProjetoPage } from '../projeto/projeto';
 import { SobreComponent } from '../../components/sobre/sobre';
 import { FcmProvider } from '../../providers/fcm/fcm';
+import firebase from '@firebase/app';
+import { Observable } from 'rxjs/Observable';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { map } from 'rxjs/operators';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
@@ -11,78 +16,142 @@ import { FcmProvider } from '../../providers/fcm/fcm';
   templateUrl: 'notificacoes.html',
 })
 export class NotificacoesPage {
-  private notificacao: any;
-  private notificacoes = [];
+
+  private notificacoes: Observable<any[]>;
+  userUid: String;
 
 
-  constructor(public fcm: FcmProvider, public popoverCtrl: PopoverController, public toastCtrl: ToastController, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
-    this.preencherNotificacoes();
+  constructor(public fcm: FcmProvider,
+    public popoverCtrl: PopoverController,
+    public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore) {
+
     
+    this.userUid = firebase.auth().currentUser.uid;
+
   }
 
   ionViewDidLoad(){
+    this.notificacoes = this.getNotificacoes();
+
   }
 
-  getNotificacoes(ev: any) {
-    this.preencherNotificacoes();
-    const val = ev.target.value;
-    if (val && val.trim() != '') {
-      this.notificacoes = this.notificacoes.filter((notificacao) => {
-        return (notificacao.mensagem.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+  getNotificacoes(event?) {
+    
+    return this.afs.collection('notifications', ref => ref.where("userId", '==', this.userUid))
+    .snapshotChanges().pipe(
+      map(actions => {
+       return actions.map(a =>{
+         let data = a.payload.doc.data();
+         let id = a.payload.doc.id;
+         let obj = {id, ...data};
+         return(obj);
+       })
+     }));
+  }
+
+  // preencherNotificacoes(): any {
+  //   this.notificacoes = [];
+  //   this.notificacao = { tipo: TipoNotificacao.NovaAtividade, vista: true, imagem: "assets/imgs/img_padrao_projeto.png", mensagem: "Anderson Dalbert lhe mencionou como colaborador na atividade 'Wireframing' em 'Projeto ES'." };
+  //   this.notificacoes.push(this.notificacao);
+  //   this.notificacao = { tipo: TipoNotificacao.Revisao, vista: true, imagem: "assets/imgs/revisao.png", mensagem: "Sua submissão da atividade 'Criar o diagrama de classes' foi marcada para revisão." };
+  //   this.notificacoes.push(this.notificacao);
+  //   this.notificacao = { tipo: TipoNotificacao.Chat, vista: true, imagem: "assets/imgs/chat.png", mensagem: "4 mensagens não lidas em 2 chats." };
+  //   this.notificacoes.push(this.notificacao);
+  //   this.notificacao = { tipo: TipoNotificacao.NovoProjeto, vista: true, imagem: "assets/imgs/img_padrao_projeto.png", mensagem: "Você foi convidado a participar do projeto 'Sarrafo-2018' por 'Sheyla Silva'." };
+  //   this.notificacoes.push(this.notificacao);
+  //   this.notificacao = { tipo: TipoNotificacao.Prazo, vista: true, imagem: "assets/imgs/revisao.png", mensagem: "A atividade 'fazer projeto de ES' está próximo do prazo de entrega com data '28/06/2018'." };
+  //   this.notificacoes.push(this.notificacao);
+  // }
+
+  getImgSource(notifType){
+    const projeto = "assets/imgs/img_padrao_projeto.png";
+    const revisao = "assets/imgs/revisao.png";
+    const chat = "assets/imgs/chat.png";
+
+    switch (notifType){
+      case TipoNotificacao.Chat:
+        return chat;
+    
+      case TipoNotificacao.Prazo:
+      case TipoNotificacao.Revisao:
+        return revisao;
+
+      case TipoNotificacao.NovaAtividade:
+      case TipoNotificacao.NovoProjeto:
+        return projeto;
+
+      default:
+        return "";
+
     }
   }
 
-  preencherNotificacoes(): any {
-    this.notificacoes = [];
-    this.notificacao = { tipo: TipoNotificacao.NovaAtividade, vista: true, imagem: "assets/imgs/img_padrao_projeto.png", mensagem: "Anderson Dalbert lhe mencionou como colaborador na atividade 'Wireframing' em 'Projeto ES'." };
-    this.notificacoes.push(this.notificacao);
-    this.notificacao = { tipo: TipoNotificacao.Revisao, vista: true, imagem: "assets/imgs/revisao.png", mensagem: "Sua submissão da atividade 'Criar o diagrama de classes' foi marcada para revisão." };
-    this.notificacoes.push(this.notificacao);
-    this.notificacao = { tipo: TipoNotificacao.Chat, vista: true, imagem: "assets/imgs/chat.png", mensagem: "4 mensagens não lidas em 2 chats." };
-    this.notificacoes.push(this.notificacao);
-    this.notificacao = { tipo: TipoNotificacao.NovoProjeto, vista: true, imagem: "assets/imgs/img_padrao_projeto.png", mensagem: "Você foi convidado a participar do projeto 'Sarrafo-2018' por 'Sheyla Silva'." };
-    this.notificacoes.push(this.notificacao);
-    this.notificacao = { tipo: TipoNotificacao.Prazo, vista: true, imagem: "assets/imgs/revisao.png", mensagem: "A atividade 'fazer projeto de ES' está próximo do prazo de entrega com data '28/06/2018'." };
-    this.notificacoes.push(this.notificacao);
-  }
-
   limparNotificacoes() {
-    if (this.notificacoes.length > 0) {
+    if (!this.notificacoes.isEmpty) {
       let mensagem = "Deseja excluir todas as notificações?";
-      let excluir = this.confirmarExclusao(mensagem);
+      this.confirmarExclusao(mensagem);
     }else{
-      this.informacoes("Você não possui notificações!");
+      this.sendToast("Você não possui notificações!");
     }
   }
 
   limparNotificacao(notificacao) {
-    let mensagem = "Deseja excluir a notificação de " + notificacao.tipo.toLowerCase() + "?";
-    let excluir = this.confirmarExclusao(mensagem, notificacao);
+    let mensagem = "Deseja excluir a notificação de " + notificacao.type.toLowerCase() + "?";
+    this.confirmarExclusao(mensagem, notificacao);
   }
-  informacoes(mensagem) {
+
+  sendToast(mensagem) {
     const toast = this.toastCtrl.create({
       message: mensagem,
       duration: 3000
     });
     toast.present();
   }
+
+  setNewCollab(projectId, userId){
+
+    return this.afs.collection('projects').doc(projectId)
+    .update({["collaborators." + userId]: true});
+  }
+
+  reviewTaskFinished(activityId){
+
+    return this.afs.collection('tasks').doc(activityId)
+    .update({finished: true});
+  }
+
   showAlert(notificacao) {
     const alert = this.alertCtrl.create({
-      title: notificacao.tipo,
-      message: notificacao.mensagem,
+      title: notificacao.type,
+      message: notificacao.message,
       buttons: [{
-        text: 'aceitar',
+        text: 'Aceitar',
         handler: data => {
-          if (notificacao.tipo == TipoNotificacao.NovoProjeto)
+          if (notificacao.type == TipoNotificacao.NovoProjeto){
+
             //adiciona o colaborador ao projeto
-            this.navCtrl.push(ProjetoPage);
-          else
+            this.setNewCollab(notificacao.projectId, notificacao.userId);
+            this.eraseNotification(notificacao.id);
+            this.navCtrl.push('ColaborandoPage');
+          }
+
+          else if (notificacao.type == TipoNotificacao.Revisao){
+
             //marcar atividade como concluída
-            this.navCtrl.push(ProjetoPage);
+            this.reviewTaskFinished(notificacao.taskId);
+            this.eraseNotification(notificacao.id);
+            //add project id on redirect
+            this.navCtrl.push('ProjetoPage');
+          }
+
         }
       }, {
-        text: 'recusar',
+        text: 'Recusar',
         handler: data => {
           this.limparNotificacao(notificacao);
 
@@ -91,6 +160,23 @@ export class NotificacoesPage {
     });
     alert.present();
   }
+
+  eraseNotification(notifId){
+
+    return this.afs.collection('notifications')
+    .doc(notifId).delete();
+
+  }
+
+  eraseAllNotifications(userId){
+    return this.afs.collection('notifications')
+    .ref.where("userId", '==', userId).get().then( notifications => {
+      notifications.forEach( notif =>{
+        notif.ref.delete();
+      })
+    });
+  }
+
   confirmarExclusao(subtitulo, notificacao?) {
     const prompt = this.alertCtrl.create({
       subTitle: subtitulo,
@@ -99,12 +185,13 @@ export class NotificacoesPage {
         {
           text: 'Sim', handler: data => {
             if(notificacao!=null){
-              const index = this.notificacoes.indexOf(notificacao);
-              this.notificacoes.splice(index, 1);
-              this.informacoes("Notificação excluída!");
+              //erase this notification
+              this.eraseNotification(notificacao.id);
+              this.sendToast("Notificação excluída!");
             }else{
-              this.notificacoes = [];
-              this.informacoes("Notificações excluídas!");
+              //erase all notifications
+              this.eraseAllNotifications(this.userUid);
+              this.sendToast("Notificações excluídas!");
             }
 
           }
@@ -115,44 +202,43 @@ export class NotificacoesPage {
   }
 
   visualizarCard(notificacao) {
-    this.desabilita(notificacao);
+    this.setNotifSeen(notificacao.id);
     this.acaoNotificacao(notificacao);
   }
 
   acaoNotificacao(notificacao) {
-    switch (notificacao.tipo) {
+    switch (notificacao.type) {
 
       case TipoNotificacao.NovaAtividade:
       case TipoNotificacao.Prazo:
+        //add project id on redirect
         this.navCtrl.push(ProjetoPage);
         break;
 
       case TipoNotificacao.NovoProjeto:
-        let aceitarR = this.showAlert(notificacao);
+        this.showAlert(notificacao);
         break;
 
       case TipoNotificacao.Revisao:
-        let aceitar = this.showAlert(notificacao);
+        this.showAlert(notificacao);
         break;
 
       default:
-        console.log('Ops! Algo deu errado');
+        console.log('Notification action type not found: ' + notificacao.type);
         break;
 
     }
   }
 
-  desabilita(notificacao): any {
-    this.notificacoes.forEach(element => {
-      if (element == notificacao) {
-        element.vista = false;
-      }
-    });
+  setNotifSeen(notifId) {
+    
+    return this.afs.collection('notifications')
+    .doc(notifId).update({seen: true});
   }
 
   ionViewDidEnter(){
-    if(this.notificacoes.length<=0){
-    this.informacoes("Você não possui notificações!");
+    if(this.notificacoes.isEmpty){
+    this.sendToast("Você não possui notificações!");
     }
   }
 }
