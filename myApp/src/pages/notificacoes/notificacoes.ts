@@ -1,8 +1,7 @@
-import { Component, trigger } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { AlertController, ToastController } from 'ionic-angular';
 import { ProjetoPage } from '../projeto/projeto';
-import { SobreComponent } from '../../components/sobre/sobre';
 import { FcmProvider } from '../../providers/fcm/fcm';
 import firebase from '@firebase/app';
 import { Observable } from 'rxjs/Observable';
@@ -54,19 +53,6 @@ export class NotificacoesPage {
      }));
   }
 
-  // preencherNotificacoes(): any {
-  //   this.notificacoes = [];
-  //   this.notificacao = { tipo: TipoNotificacao.NovaAtividade, vista: true, imagem: "assets/imgs/img_padrao_projeto.png", mensagem: "Anderson Dalbert lhe mencionou como colaborador na atividade 'Wireframing' em 'Projeto ES'." };
-  //   this.notificacoes.push(this.notificacao);
-  //   this.notificacao = { tipo: TipoNotificacao.Revisao, vista: true, imagem: "assets/imgs/revisao.png", mensagem: "Sua submissão da atividade 'Criar o diagrama de classes' foi marcada para revisão." };
-  //   this.notificacoes.push(this.notificacao);
-  //   this.notificacao = { tipo: TipoNotificacao.Chat, vista: true, imagem: "assets/imgs/chat.png", mensagem: "4 mensagens não lidas em 2 chats." };
-  //   this.notificacoes.push(this.notificacao);
-  //   this.notificacao = { tipo: TipoNotificacao.NovoProjeto, vista: true, imagem: "assets/imgs/img_padrao_projeto.png", mensagem: "Você foi convidado a participar do projeto 'Sarrafo-2018' por 'Sheyla Silva'." };
-  //   this.notificacoes.push(this.notificacao);
-  //   this.notificacao = { tipo: TipoNotificacao.Prazo, vista: true, imagem: "assets/imgs/revisao.png", mensagem: "A atividade 'fazer projeto de ES' está próximo do prazo de entrega com data '28/06/2018'." };
-  //   this.notificacoes.push(this.notificacao);
-  // }
 
   getImgSource(notifType){
     const projeto = "assets/imgs/img_padrao_projeto.png";
@@ -134,7 +120,6 @@ export class NotificacoesPage {
         handler: data => {
           if (notificacao.type == TipoNotificacao.NovoProjeto){
 
-            //adiciona o colaborador ao projeto
             this.setNewCollab(notificacao.projectId, notificacao.userId);
             this.eraseNotification(notificacao.id);
             this.navCtrl.push('ColaborandoPage');
@@ -142,7 +127,6 @@ export class NotificacoesPage {
 
           else if (notificacao.type == TipoNotificacao.Revisao){
 
-            //marcar atividade como concluída
             this.reviewTaskFinished(notificacao.taskId);
             this.eraseNotification(notificacao.id);
             //add project id on redirect
