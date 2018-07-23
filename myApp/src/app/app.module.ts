@@ -53,7 +53,6 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    ColaboradoresComponent,
     TarefasComponent,
     GraficosComponent,
     SobreComponent,

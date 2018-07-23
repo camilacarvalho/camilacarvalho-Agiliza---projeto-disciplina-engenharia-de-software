@@ -55,7 +55,7 @@ export class MyApp {
       let config = configProvider.getConfigData();
 
       if (config == null) {
-        this.rootPage = ProjetoPage;
+        this.rootPage = WelcomePage;
         configProvider.setConfigData(false);
       } else {
         this.rootPage = HomePage;
