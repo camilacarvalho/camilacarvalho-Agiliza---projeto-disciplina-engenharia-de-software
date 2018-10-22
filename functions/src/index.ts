@@ -47,7 +47,8 @@ export const buildUser = functions.auth.user().onCreate(snap => {
 });    
 
 export const sendNotification = functions.firestore.document('notifications/{notificationId}')
-    .onCreate(async snap => {
+    .onCreate(snap => {
+
         const notification = snap.data();
         const payload = {
             notification: {
@@ -56,22 +57,22 @@ export const sendNotification = functions.firestore.document('notifications/{not
             }
         }
 
-        const  devicesToNotify: string[] = [];
-        const userId = snap.data().userId;
-        const devicesRef = admin.firestore().collection('devices')
-        .where('userId', '==', notification.userId);
-        
-        const devices = await devicesRef.get();
-        
-        devices.forEach(device => {
-            devicesToNotify.push(device.data().token)
-        });
+        return admin.firestore().collection('devices')
+        .where('userId', '==', notification.userId).get().then( devices =>{
 
-        return admin.messaging().sendToDevice(devicesToNotify, payload);
+            const devicesToNotify = []
 
-        
-       
-        
+            devices.forEach(device =>{
+                devicesToNotify.push(device.data().token);
+            })
+            
+            return devicesToNotify;
+        }).then( devicesToNotify =>{
+            return admin.messaging().sendToDevice(devicesToNotify, payload);
+        }).catch( error =>{
+            console.log(error);
+        })
+    
     });
 
     //Storage function: Resize thumbnails
