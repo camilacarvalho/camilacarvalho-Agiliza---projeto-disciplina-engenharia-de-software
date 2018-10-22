@@ -3,6 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from  'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -15,6 +17,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Camera } from '@ionic-native/camera';
 import { Firebase } from '@ionic-native/firebase';
+import { DatePicker } from '@ionic-native/date-picker';
 
 import { TarefasComponent } from '../components/tarefas/tarefas';
 import { GraficosComponent } from '../components/graficos/graficos';
@@ -70,6 +73,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     ColaborandoPageModule,
@@ -96,6 +101,7 @@ export const firebaseConfig = {
   providers: [
     GooglePlus,
     StatusBar,
+    DatePicker,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,

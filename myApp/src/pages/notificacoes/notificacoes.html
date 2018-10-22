@@ -8,20 +8,20 @@
   </ion-header>
   
   <ion-content padding>
-      <ion-searchbar (ionInput)="getNotificacoes($event)" *ngIf="notificacoes.length>0" ></ion-searchbar>
-      <button ion-button small clear *ngIf="notificacoes.length>0" (click)=" limparNotificacoes()">LIMPAR TUDO</button>      
-      <ion-card *ngFor="let notificacao of notificacoes" (press)="limparNotificacao(notificacao)" (click)="visualizarCard(notificacao)">
-          <ion-card-content *ngIf="notificacao.vista==true">
+      <ion-searchbar (ionInput)="getNotificacoes($event)" *ngIf="notificacoes != null && !notificacoes.isEmpty" ></ion-searchbar>
+      <button ion-button small clear *ngIf="notificacoes != null && !notificacoes.isEmpty" (click)=" limparNotificacoes()">Apagar Notificações</button>      
+      <ion-card *ngFor="let notificacao of notificacoes | async" (press)="limparNotificacao(notificacao)" (click)="visualizarCard(notificacao)">
+          <ion-card-content *ngIf="notificacao.seen == true">
               <ion-avatar>
-                  <img [src]="notificacao.imagem">
+                  <img [src]="getImgSource(notificacao.type)">
                 </ion-avatar>
-                {{notificacao.mensagem}}
+                {{notificacao.message}}
           </ion-card-content>
-          <ion-card-content *ngIf="notificacao.vista==false" style="background-color:#f4f4f4">
+          <ion-card-content *ngIf="notificacao.seen == false" style="background-color:#f4f4f4">
             <ion-avatar>
-                <img [src]="notificacao.imagem">
+                <img [src]="getImgSource(notificacao.type)">
               </ion-avatar>
-              {{notificacao.mensagem}}
+              {{notificacao.message}}
         </ion-card-content>
         </ion-card>
   </ion-content>

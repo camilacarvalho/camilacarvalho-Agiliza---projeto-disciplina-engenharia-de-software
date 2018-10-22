@@ -1,51 +1,67 @@
 <ion-content>
   <ion-navbar>
     <div>
-      <button ion-button small clear *ngIf="editar==true" (click)="editar=false" id="button_right">EDITAR</button>
       <br>
       <ion-avatar>
-        <img [src]="novo_usuario.img">
+        <img src="assets/imgs/img_padrao_projeto.png">
       </ion-avatar>
-      <button ion-button small *ngIf="editar==false" (click)="tirarFoto()" round outline icon-start id="button_navbar">
-          <ion-icon name="ios-camera"></ion-icon>Câmera</button>
-        <br>
-        <button ion-button small *ngIf="editar==false" (click)="encontrarFoto()" round outline icon-start id="button_navbar">
-          <ion-icon name="ios-image"></ion-icon>Galeria</button>
-
-      <ion-input id="input_navbar" autocomplete="on" [(ngModel)]="novo_usuario.nome" type="text" [disabled]="editar" [value]="usuario.nome"></ion-input>
+      <button ion-button small (click)="tirarFoto()" round outline icon-start id="button_navbar">
+        <ion-icon name="ios-camera"></ion-icon>Câmera</button>
+      <br>
+      <button ion-button small (click)="encontrarFoto()" round outline icon-start id="button_navbar">
+        <ion-icon name="ios-image"></ion-icon>Galeria</button>
+      <div *ngIf="(usuario | async) || {} as usuario">
+        <ion-input id="input_navbar" autocomplete="on" placeholder="{{usuario.name}}" type="text"></ion-input>
+      </div>
 
     </div>
   </ion-navbar>
-  <div padding>
-    <ion-item>
-      <ion-label stacked>Cargo: </ion-label>
-      <ion-textarea autocomplete="on" [(ngModel)]="novo_usuario.cargo" type="text" [disabled]="editar" [value]="usuario.cargo"></ion-textarea>
-    </ion-item>
+  <ion-content padding>
+    <form [formGroup]="novo_usuario">
+      <div *ngIf="(usuario | async) || {} as usuario">
 
-    <ion-item>
-      <ion-label stacked>Cidade: </ion-label>
-      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.cidade" [disabled]="editar" type="text" [value]="usuario.cidade"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label stacked>País:</ion-label>
-      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.pais" type="text" [disabled]="editar" [value]="usuario.pais"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Telefone:</ion-label>
-      <ion-input autocomplete="on" [(ngModel)]="novo_usuario.telefone" type="tel" [disabled]="editar" [value]="usuario.telefone"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Email:</ion-label>
-      <ion-input [(ngModel)]="novo_usuario.email" disabled type="email" [value]="usuario.email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Bio:</ion-label>
-      <ion-textarea autocomplete="on" [(ngModel)]="novo_usuario.bio" type="text" [disabled]="editar" [value]="usuario.bio"></ion-textarea>
-    </ion-item>
-    <div padding>
-      <button *ngIf="editar==false" ion-button outline (click)="salvar()" padding>SALVAR</button>
-      <button *ngIf="editar==false" ion-button outline (click)="cancelar()">CANCELAR</button>
-    </div>
-  </div>
+        <ion-item>
+          <ion-label>Nome</ion-label>
+          <ion-input type="text" placeholder="{{usuario.name}}" formControlName="name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Cargo</ion-label>
+          <ion-input type="text" placeholder="{{usuario.occupation}}" formControlName="occupation"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Cidade</ion-label>
+          <ion-input type="text" placeholder="{{usuario.city}}" formControlName="city"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>País</ion-label>
+          <ion-input type="text" placeholder="{{usuario.country}}" formControlName="country"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Telefone</ion-label>
+          <ion-input type="text" placeholder="{{usuario.phone}}" formControlName="phone"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>E-Mail</ion-label>
+          <ion-input type="text" readonly=true placeholder="{{usuario.email}}"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Bio</ion-label>
+          <ion-textarea type="text" placeholder="{{usuario.bio}}" formControlName="bio"></ion-textarea>
+        </ion-item>
+      </div>
+
+      <ion-buttons>
+        <button ion-button (click)="salvar()" [disabled]="!novo_usuario.valid" full>Salvar</button>
+        <button ion-button color="danger" (click)="cancelar()" full>Cancelar</button>
+      </ion-buttons>
+    </form>
+
+  </ion-content>
 </ion-content>
