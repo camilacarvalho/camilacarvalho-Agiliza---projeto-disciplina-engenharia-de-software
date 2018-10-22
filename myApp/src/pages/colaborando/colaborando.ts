@@ -26,5 +26,9 @@ export class ColaborandoPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ColaborandoPage');
   }
+
+  buttonProjetoClick() {
+    this.navCtrl.push('ProjetoPage');
+  }
   
 }

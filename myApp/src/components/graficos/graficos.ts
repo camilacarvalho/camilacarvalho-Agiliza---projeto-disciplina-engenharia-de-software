@@ -44,7 +44,7 @@ export class GraficosComponent {
       const data = {
         labels: ['A fazer', 'Em and.', 'Realizadas', 'Não Real.'],
         datasets: [{
-          label: 'número de atividades',
+          label: 'Número de atividades',
           data: [12, 23, 90, 5],
           backgroundColor: [
             'rgb(60, 0, 70)',
