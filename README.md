@@ -1,5 +1,7 @@
+
+
 # Agiliza
-Projeto da disciplina de Engenharia de Software
+Projeto desenvolvido durante a disciplina de Engenharia de Software. Utilizando IONIC 3 e Firebase.
 
 # Contribuindo:
 Para contribuir, recomenda-se a criação de um galho (Branch) para cada funcionalidade, segue exemplo:
